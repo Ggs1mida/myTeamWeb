@@ -1,0 +1,33 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link rel="~/Content/CSS/amazeui.css" type="text/css" />
+    <script src="~/Scripts/amazeui.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery-2.1.0.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            alert("文档准备好了");
+            $.get("/Solution/nihao?type=simple", function (response) { alert(response)});
+        })
+    </script>
+    <script>
+        function creathtml() {
+            $.post('@Url.Action("CreatHtml","Solution")', function (response) {
+                alert(response);
+            })
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <button onclick="creathtml()">创建html文件</button>
+        </div>
+</body>
+</html>

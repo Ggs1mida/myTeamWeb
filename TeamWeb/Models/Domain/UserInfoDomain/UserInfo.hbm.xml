@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="TeamWeb" namespace="TeamWeb.Models.Domain.UserInfoDomain" default-lazy="false">
+  <class name="UserInfo" table="USERINFO">
+    <id name="Id">
+      <column name="USERCODE" sql-type="char(32)" not-null="true"/>
+      <generator class="uuid.hex"/>
+    </id>
+
+    <property name="UserName" column="UserName"/>
+
+    <property name="Pwd" column="Password"/>
+
+    <property name="Name" column="REALNAME"/>
+
+    <property name="Sex" column="SEX"/>
+
+    <property name="UserType" column="USERTYPE"/>
+
+    <property name="Email" column="Email"/>
+
+    <property name="QQ" column="QQ"/>
+
+    <property name="Headimage" column="HEADIMAGE"/>
+
+    <property name="Phone" column="PHONE"/>
+ <property name="Wx" column="WX"/>
+   <property name="Power" column="POWER"/>
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,269 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>南理工自动化研究所</title>
+    <link rel="stylesheet" href="~/Content/CSS/amazeui.css" />
+    <link rel="stylesheet" href="~/Content/CSS/common.min.css" />
+    <link rel="stylesheet" href="~/Content/CSS/news.min.css" />
+
+</head>
+<body>
+    <div class="layout">
+        <!--===========layout-header================-->
+        <div class="layout-header am-hide-sm-only">
+            <!--topbar start-->
+            <div class="topbar">
+                <div class="container">
+                    <div class="am-g">
+                        <div class="am-u-md-3">
+                            <div class="topbar-left">
+                                <i class="am-icon-globe"></i>
+                                <div class="am-dropdown" data-am-dropdown>
+                                    <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle>Language <span class="am-icon-caret-down"></span></button>
+                                    <ul class="am-dropdown-content">
+                                        <li><a href="#">English</a></li>
+                                        <li class="am-divider"></li>
+                                        <li><a href="#">Chinese</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-u-md-9">
+                            <div class="topbar-right am-text-right am-fr">
+                                Follow us
+                                <i class="am-icon-facebook"></i>
+                                <i class="am-icon-twitter"></i>
+                                <i class="am-icon-google-plus"></i>
+                                <i class="am-icon-pinterest"></i>
+                                <i class="am-icon-instagram"></i>
+                                <i class="am-icon-linkedin"></i>
+                                <i class="am-icon-youtube-play"></i>
+                                <i class="am-icon-rss"></i>
+                                <a href="/Login/login">登录</a>
+                                <a href="/Login/register">注册</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--pc端导航栏-->
+            <div class="header-box" data-am-sticky>
+                <div class="nav-contain">
+                    <div class="nav-inner">
+                        <ul class="am-nav am-nav-pills am-nav-justify">
+                            <li class=""><a href="/Index/index">首页</a></li>
+                            <li style="text-align:center">
+                                科研成果
+                                <ul class="sub-menu">
+                                    <li class="menu-item"><a href="/Solution/theory">理论研究</a></li>
+                                    <li class="menu-item"><a href="/Solution/solution">项目研究</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="/Reaserch/reaserch">研究领域</a>
+                            </li>
+                            <li><a href="/We/about">团队介绍
+                                
+                                </a></li>
+                            <li><a href="/We/join">加入我们</a></li>
+                            <li><a href="/We/contact">联系我们</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--移动端导航栏-->
+        <div class="m-header">
+            <div class="am-g am-show-sm-only">
+                <div class="am-u-sm-2">
+                    <a href="#mheader" class="am-menu-toggle-icon am-icon-bars"></a>
+                    <div class="menu-bars">
+                        <nav data-am-widget="menu" class="am-menu  am-menu-dropdown1"
+                             data-am-menu-collapse>
+                            <a href="javascript: void(0)" class="am-menu-toggle"></a>
+                            <ul class="am-menu-nav am-avg-sm-1 am-collapse" id="mheader">
+                                <li class="am-active"><a href="/Index/index" class="">首页</a></li>
+                                <li class="am-parent">
+                                    <a href="##" class="">科研成果</a>
+                                    <ul class="am-menu-sub am-collapse  am-avg-sm-3 ">
+                                        <li class="">
+                                            <a href="/Solution/theory" class="">理论研究</a>
+                                        </li>
+                                        <li class="">
+                                            <a href="/Solution/solution" class="">项目研究</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="">
+                                    <a href="/Reaserch/reaserch" class="">研究领域</a>
+                                </li>
+                                <li class="">
+                                    <a href="/We/about" class="">团队介绍</a>
+                                </li>
+                                <li class="">
+                                    <a href="/We/join" class="">加入我们</a>
+                                </li>
+                                <li class="">
+                                    <a href="/We/contact" class="">联系我们</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="am-u-sm-5 am-u-end">
+                    <div class="m-logo">
+                        <a href=""><img src="~/Content/Images/logo.png" alt="" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--侧栏主要内容-->
+        <div class="am-g am-show-sm-only">
+            <div class="am-u-sm-2">
+                <div class="menu-bars">
+                    <nav data-am-widget="menu" class="am-menu  am-menu-offcanvas1" data-am-menu-offcanvas>
+                        <!--      <a href="javascript: void(0)" class="am-menu-toggle"></a> -->
+                        <div class="am-offcanvas" id="doc-oc-demo1">
+                            <div class="am-offcanvas-bar">
+                                <nav class="scrollspy-nav" data-am-scrollspynav data-am-sticky>
+                                    <ul class="am-menu-nav am-avg-sm-1">
+                                        <li><a href="#team" class="">团队简介</a></li>
+                                        <li class=""><a href="#welcome" class="">期待你的加入</a></li>
+                                        <li class=""><a href="#contact" class="">联系方式</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!--===========layout-container================-->
+        <div class="layout-container">
+            <div class="page-header">
+                <div class="am-container">
+                    <h1 class="page-header-title">正文</h1>
+                </div>
+            </div>
+
+            <div class="breadcrumb-box">
+                <div class="am-container">
+                    <ol class="am-breadcrumb">
+                        <li><a href="/Index/index">首页</a></li>
+                        <li class="am-active">正文</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="section news-section">
+            <div class="container">
+                <!--news-section left start-->
+                <div class="am-u-md-9">
+                    <div class="article">
+                        <header class="article--header">
+                            <h2 class="article--title"><a href="#" rel="">基于PC/104总线的语音数据同传Modem</a></h2>
+                            <ul class="article--meta">
+                                <li class="article--meta_item"><i class="am-icon-calendar"></i>October 10, 2016</li>
+                                <li class="article--meta_item"><i class="am-icon-user"></i>by张三</li>
+                                <li class="article--meta_item"><i class="am-icon-commenting-o"></i>33评论</li>
+                            </ul>
+                        </header>
+                        <div class="article--content">
+                            <img src="~/Content/Images/solution/content/5002-1.png" />
+                            <img src="~/Content/Images/solution/content/5002-2.png" />
+                            <p>在分布式控制系统中经常需要进行数据的远距离传输，高速MODEM（调制解调器）是实现数据和语音远距离传输的有效手段。某分布式火炮控制系统改造项目中通讯系统的一个部分，由它来实现数据和语音信号远距离的实时传送。对它的具体要求是能同时传送标准数据信号和双向语音信号，实时性好，专线方式连接（不经过电话网），传输距离不小于5000米，尺寸尽量小，功耗低，便于携带，能在野外和恶劣环境下工作。</p>
+                            <p>本设计根据系统的需要，选择了ROCKWELL公司（现Conexant公司）的RCV336ACF/SP作为调制解调主芯片。该芯片性能稳定，具有多种传输模式和接口可供选择，通信软件与AT命令兼容。单纯传输数据时，该MODEM在线速率可达33.6kbps；模拟数音同传模式下采用ML288调制方式时，数据传输速率为4800bps～14400bps，同时可进行双向语音传输并可保证较好的话音质量。纠错（V.24/MNP 2-4）和数据压缩（V.24 bis/MNP 5）功能使传输的数据具有最大的完整性，且可提高数据的平均吞吐量至115.2kbps；话音模式下还支持全数字双工通讯和各种话音数字存储功能</p>
+                        </div>
+                    </div>
+                </div>
+                <!--news-section left end-->
+                <!--news-section right start-->
+                <div class="am-u-md-3">
+                    <div class="blog_sidebar am-hide-sm-only">
+                        <div class="widget">
+                            <h2 class="widget--title"><i class="am-icon-file-text-o"></i>通知公告</h2>
+                            <ul>
+                                <li><a href="#">公告1</a></li>
+                                <li><a href="#">公告2</a></li>
+                                <li><a href="#">公告3</a></li>
+                            </ul>
+                        </div>
+                        <div class="widget">
+                            <h2 class="widget--title"><i class="am-icon-comments-o"></i>行业动态</h2>
+                            <ul>
+                                <li><a href="#">动态1</a></li>
+                                <li><a href="#">动态2</a></li>
+                                <li><a href="#">动态3</a></li>
+                            </ul>
+                        </div>
+                        <div class="widget">
+                            <h2 class="widget--title"><i class="am-icon-rss"></i>规章制度</h2>
+                            <ul>
+                                <li><a href="#">制度1</a><span class="rss-date">November 10, 2015</span></li>
+                                <li><a href="#">制度2</a><span class="rss-date">November 10, 2015</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--news-section right end-->
+            </div>
+        </div>
+    </div>
+
+
+    <!--===========layout-container================-->
+    <div class="layout-footer">
+        <div class="footer">
+            <div style="background-color:#383d61" class="footer--bg"></div>
+            <div class="footer--inner">
+                <div class="container">
+                    <div class="footer_main">
+                        <div class="am-g">
+                           
+                                <div class="footer_main--column">
+                                    <strong class="footer_main--column_title">南理工自动化研究所</strong>
+                                    <div class="footer_about">
+                                        <p class="footer_about--text">
+                                            云适配(AllMobilize Inc.) 是全球领先的HTML5企业移动化解决方案供应商，由前微软美国总部IE浏览器核心研发团队成员及移动互联网行业专家在美国西雅图创立.
+                                        </p>
+                                        <p class="footer_about--text">
+                                            云适配跨屏云也成功应用于超过30万家企业网站，包括微软、联想等世界500强企业
+                                        </p>
+                                    </div>
+                                </div>
+                         
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--右下角图标-->
+    
+    <div class="amz-toolbar" id="amz-toolbar" style="right:10px">
+        <a title="回到顶端" class="am-icon-btn am-icon-arrow-up" id="amz-go-top" href="#top" data-am-smooth-scroll></a>
+    </div>
+    <script src="~/Scripts/jquery-2.1.0.js" charset="utf-8"></script>
+    <script src="~/Scripts/amazeui.js" charset="utf-8"></script>
+</body>
+
+</html>
+
+
+

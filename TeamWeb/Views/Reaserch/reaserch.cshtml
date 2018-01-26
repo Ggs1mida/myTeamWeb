@@ -1,0 +1,212 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>南理工自动化研究所</title>
+    <link rel="stylesheet" href='@Url.Content("~/Content/CSS/amazeui.css")' />
+    <link rel="stylesheet" href='@Url.Content("~/Content/CSS/common.min.css")' />
+    <link rel="stylesheet" href='@Url.Content("~/Content/CSS/news.min.css")' />
+
+    <script src='@Url.Content("~/Scripts/jquery-2.1.0.js")' charset="utf-8"></script>
+    <style>
+        .news-contaier{
+            padding-left:10%;
+            padding-right:10%;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            show();
+        })
+    </script>
+    <script type="text/javascript">
+    function show() {
+        var url = '@Url.Action("ListReaserch","Reaserch")';
+            $.post(url, function (response) {
+              // alert(response);
+                var dataset = JSON.parse(response.replace(/\r\n/g, "\\r\\n").replace(/\n/g, "\\\\n"));
+                var content = "";
+                for (var i = 0; i <= dataset.length - 1; i++) {
+                    var imgurl = '@Url.Content("http://egov.jinyuc.com/teamweb/common/teamimg/")' + dataset[i].image;
+                        content += "<div class='am-g'>" +                     
+                            "<h3 class='name'>" + dataset[i].teamfield + "</h3>" +
+                            "<img style='width:30%;margin-left:35%' src=" + imgurl + " class='img' />" +
+                            "<pre class='introduce'>" + dataset[i].teamintroduce + "</pre>" +                   
+                        "</div>"+
+                        "<br />" +
+                         "<hr class='section_divider -narrow' style='height:1px;border-top:1px dashed'>" +
+                         "<br />";                    
+                }
+                $(".blog").html(content);
+            })
+        }
+    </script>
+</head>
+<body>
+    <div class="layout">
+        <!--===========layout-header================-->
+        <div class="layout-header am-hide-sm-only">
+            <!--pc端导航栏-->
+            <div class="header-box" data-am-sticky>
+                <div class="nav-contain">
+                    <div class="nav-inner">
+                        <ul class="am-nav am-nav-pills am-nav-justify">
+                            <li class=""><a href='@Url.Action("index","Index")'>首页</a></li>
+                            <li><a href='@Url.Action("news","News")'>新闻中心</a></li>
+                            <li style="text-align:center">
+                                科研成果
+                                <ul class="sub-menu">
+                                    <li class="menu-item"><a href='@Url.Action("theory","Solution")'>理论研究</a></li>
+                                    <li class="menu-item"><a href='@Url.Action("solution","Solution")'>项目研究</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href='@Url.Action("reaserch","Reaserch")'>研究领域</a>
+                            </li>
+                            <li><a href='@Url.Action("about","We")'>团队介绍</a></li>
+                            <li><a href='@Url.Action("join","We")'>加入我们</a></li>
+                            <li><a href='@Url.Action("contact","We")'>联系我们</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--移动端导航栏-->
+        <div class="m-header">
+            <div class="am-g am-show-sm-only">
+                <div class="am-u-sm-2">
+                    <a href="#mheader" class="am-menu-toggle-icon am-icon-bars"></a>
+                    <div class="menu-bars">
+                        <nav data-am-widget="menu" class="am-menu  am-menu-dropdown1"
+                             data-am-menu-collapse>
+                            <a href="javascript: void(0)" class="am-menu-toggle"></a>
+                            <ul class="am-menu-nav am-avg-sm-1 am-collapse" id="mheader">
+                                <li class="am-active"><a href='@Url.Action("index","Index")' class="">首页</a></li>
+                                <li class="">
+                                    <a href='@Url.Action("news","News")' class="">新闻中心</a>
+                                </li>
+                                <li class="am-parent">
+                                    <a href="##" class="">科研成果</a>
+                                    <ul class="am-menu-sub am-collapse  am-avg-sm-3 ">
+                                        <li class="">
+                                            <a href='@Url.Action("theory", "Solution")' class="">理论研究</a>
+                                        </li>
+                                        <li class="">
+                                            <a href='@Url.Action("solution","Solution")' class="">项目研究</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="">
+                                    <a href='@Url.Action("reaserch","Reaserch")' class="">研究领域</a>
+                                </li>
+                                <li class="">
+                                    <a href='@Url.Action("about", "We")' class="">团队介绍</a>
+                                </li>
+                                <li class="">
+                                    <a href='@Url.Action("join", "We")' class="">加入我们</a>
+                                </li>
+                                <li class="">
+                                    <a href='@Url.Action("contact", "We")' class="">联系我们</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="am-u-sm-5 am-u-end">
+                    <div class="m-logo">
+                        <a href=""><img src='@Url.Content("~/Content/Images/logo.png")' alt="" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--===========layout-container================-->
+        <!--标题-->
+        <div class="layout-container">
+            <div class="page-header">
+                <div class="am-container">
+                    <h1 class="page-header-title">研究概览</h1>
+                </div>
+            </div>
+
+            <div class="breadcrumb-box">
+                <div class="am-container">
+                    <ol class="am-breadcrumb">
+                        <li><a href='@Url.Action("index","Index")'>首页</a></li>
+                        <li class="am-active">研究概览</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="container">
+                <div class="section--header">
+                    <h2 class="section--title">研究领域</h2>                 
+                </div>
+                <!--内容-->
+                <div class="news-contaier">
+                    <div class="blog">
+                        <div class="am-g">                     
+                            <h3 class="name">低维纳米结构的自组装与薄膜制备</h3>
+                            <img src='@Url.Content("~/Content/Images/reaserch/av01.jpg")' style="width:30%;margin-left:35%" class="img" />
+                            <pre class="introduce">纳米材料的自组装是指，在一定的条件下利用纳米结构的的相互作用自发地形成有宏观有序结构，是实现其在宏观尺度实际应用的最有效途径。本课题组利用纳米材料的表面特性和独特的显微形貌，成功开发了多种基于液相界面的自组装方法用于纳米单层与多层薄膜的制备，并研究了该自组装的物理化学原理和工艺细节，为纳米光电器件提供高质量的纳米薄膜。</pre>                                                   
+                        </div>   
+                        <br />
+                        <hr class='section_divider -narrow' style='height:1px;border-top:1px dashed'>
+                        <br />               
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--===========layout-footer================-->
+        <div class="layout-footer">
+            <div class="footer">
+                <div style="background-color:#383d61" class="footer--bg"></div>
+                <div class="footer--inner">
+                    <div class="container">
+                        <div class="footer_main">
+                            <div class="am-g">
+
+                                <div class="footer_main--column">
+                                    <strong class="footer_main--column_title">智慧互联与网络控制研究所</strong>
+                                    <div class="footer_about">
+                                        <p class="footer_about--text">
+                                            <a href="http://lib.njust.edu.cn/">南理工图书馆</a> <a href="http://www.njust.edu.cn/">南理工官网</a><a href="http://au.njust.edu.cn/">南理工自动化</a>
+                                            <a href="http://gs.njust.edu.cn/">南理工研究生院</a> <a href="">财务网站</a>
+                                        </p>
+                                        <p class="footer_about--text">
+                                            Copyright(c)2017   智慧互联与网络控制研究所   All rights reserved   技术支持：8016团队
+                                        </p>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--右下角图标-->
+    <div class="amz-toolbar" id="amz-toolbar" style="right:10px">
+        <a title="回到顶端" class="am-icon-btn am-icon-arrow-up" id="amz-go-top" href="#top" data-am-smooth-scroll></a>
+    </div>
+    <script src='@Url.Content("~/Scripts/jquery-2.1.0.js")' charset="utf-8"></script>
+    <script src='@Url.Content("~/Scripts/amazeui.js")' charset="utf-8"></script>
+</body>
+
+</html>
+

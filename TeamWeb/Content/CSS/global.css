@@ -1,0 +1,318 @@
+﻿
+/*ͨ￿￿ʽ*/
+*{margin:0;padding:0;word-wrap:break-word;}
+body{font:12px/1.75 "￿￿", arial, sans-serif,'DejaVu Sans','Lucida Grande',Tahoma,'Hiragino Sans GB',STHeiti,SimSun,sans-serif;color:#444;}
+html, body, h1, h2, h3, h4, ul, li, dl,input{ margin:0px;padding:0px;list-style-type:none }
+a{color:#333;text-decoration:none;}
+a:hover{text-decoration:none; border: 0;}
+a:active {star:expression_r(this.onFocus=this.blur());} 
+:focus { outline:0; } 
+a img{border:none;} 
+i{font-style:normal;}
+div,ul,li,p,form{padding: 0px; margin: 0px;list-style-type: none;}
+em{font-style: normal;font-weight: normal;}
+table {padding: 0px; margin: 0px;list-style-type: none;}
+dt,dl,dd {padding: 0px; margin: 0px;list-style-type: none;}
+form{margin:0px;padding:0px;}
+tr {padding: 0px; margin: 0px;list-style-type: none;}
+h3,h4{padding:0px; font-size:14px; font-weight:bold;}
+.clear {clear:both;height:0px; overflow:hidden;}
+.blank1{height:1px;overflow:hidden;}
+.blank2{height:2px;overflow:hidden;}
+.blank10{height:8px;overflow:hidden;}
+.blank15{height:17px;overflow:hidden;}
+.blank20{height:23px;overflow:hidden;}
+.blank30{height:30px;overflow:hidden;}
+.dotline{border-bottom:#CCC 1px dashed;margin:8px;}
+
+
+
+body{background:url(bg.png) no-repeat bottom #fff;color:#333; font-family: "Microsoft yahei";}
+
+.top{width:100%;height:195px;background:url(top.png) repeat-x;margin:0 auto;}
+.logo{height:195px;margin:0 auto;background:url(logo.png) center top no-repeat;min-width:1200px}
+
+
+.banner{background:url(banner.png) center repeat-x;width:100%;margin:0 auto;height:16px;min-width:1200px;}
+
+
+.menu{width:100%;overflow: hidden;padding:0; background:#2264ae;min-width:1200px;}
+.nav{width:1010px;height:35px; margin:0 auto;overflow: hidden; text-align:center; }
+.nav ul{padding: 0; margin: 0; }
+.nav li{width:80px;text-align:center;float: left;list-style: none; height:35px;line-height: 35px; display:block; position:relative; vertical-align:hidden; background:#2264ae;}
+.nav li a{ display:block;color: #fff; font: normal 14px/35px 'Microsoft yahei'; border: 0;}
+.nav li a:hover { display:block;background:url(nav.png) no-repeat center;color: #2264ae;font: normal 14px/35px 'Microsoft yahei'; border: 0; overflow:hidden; }
+
+
+.menu .nav .menu-list { position: absolute; width: auto;display: none;background:#2264ae; border: none;overflow: hidden; z-index: 99; margin-top: -5px; margin-left:-10px; border-bottom: 1px #fff bold;  }
+.menu .nav .menu-list ul, .nav .menu-list ul li { padding: 0; margin: 0; z-index: 99; }
+.menu .nav .menu-list ul li { float: none; display: inline; border: none;background: #f74181; padding: 0; margin: 0; height: 20px; overflow: hidden;}
+.menu .nav .menu-list ul li a {border-bottom:1px solid #fff; display: block; width: 130px;clear: both; font: 14px/35px 'Microsoft yahei';color: #FFF !important; text-align: center; }
+.menu .nav .menu-list ul li a:hover { clear: both;width: 130px; font: 14px/35px 'Microsoft yahei';background:#f5f5f5; color: #2264ae !important; text-decoration: none;border-bottom:1px solid #e9e9e9;  }
+
+ 
+
+.main{ width:1060px;height:100%;margin:0 auto; overflow: hidden;}
+/*￿ҳ￿￿￿
+.main .lmain{width:265px;height:auto;float:left;overflow: hidden;margin-right:20px;}
+.main .lmain .per{height:660px; overflow:hidden;margin-bottom:3px;}
+.main .lmain .per h2{font:bold 16px/28px "Microsoft yahei";color:#0054a3; float:left;width:260px;}
+.main .lmain .per h2 i{font:normal 12px/28px "Microsoft yahei";color:#0054a3; float:right;}
+.main .lmain .per li{transform:scale();font:normal 11px/23px "Microsoft yahei";border-bottom:#7bc2ec 1px dotted;color:#333;}
+.main .lmain .per li span{color:#a03451;font:bold 11px/23px "Microsoft yahei";margin-right:5px;}
+.main .lmain .prom{height:170px; overflow:hidden;margin-bottom:10px;}
+.main .lmain .class{height:170px; overflow:hidden;}
+.main .lmain .prom h2,.main .lmain .class h2{float:left;display:block;font:bold 16px/28px "Microsoft yahei";color:#0054a3; width:260px;}
+.main .lmain .prom h2 a,.main .lmain .class h2 a{float:right;display:block;font:normal 16px/28px "Microsoft yahei";color:#0054a3;background:url(more.gif) 0px 8px no-repeat;padding-left:20px;}
+
+.main .lmain .per .bg{background:url(per.jpg) no-repeat;width:265px;height:320px;}
+.main .lmain .prom .bg img{border:1px #f08519 solid;width:262px;height:138px;}
+.main .lmain .class .bg img{border:1px #f08519 solid;width:260px;height:138px;}
+
+
+
+/*￿ҳ￿￿￿
+.main .cmain{width:500px;height:100%;float:left;overflow: hidden;}
+.main .cmain .box{width:490px; height:320px;border:#f08519 solid 1px; overflow:hidden;background:#fff;}
+.main .cmain .title {height:290px; overflow:hidden;}
+.main .cmain .title h2{background:#f08519;color:#fff;font:normal 14px/28px "Microsoft yahei"; text-align:center;}
+.main .cmain .title span{display:block;margin:5px 16px;overflow:hidden;font:normal 12px/18px "Microsoft yahei";color:#333;}
+.main .cmain .title span .pic01 img{width:460px;height:224px;margin-top:5px;}
+.main .cmain .title span .pic02 img{width:460px;height:224px;margin-top:5px;}
+
+/*￿￿￿￿￿￿
+
+.main .cmain .title .left{width:480px; height:260px;margin:5px 10px;}
+.main .cmain .title .left p{float:left;width:145px;height:250px;display: inline-block;font:normal 12px/23px "Microsoft yahei";color:#333; }
+.main .cmain .title .left .pic03 img{display:block;float:right;width:320px;height:250px;margin-right:10px;}
+.main .cmain .box ul{width:460px;height:20px;margin:0 auto;padding-top:3px;}
+.main .cmain .box ul li{float:left; height: auto;  overflow:hidden;}
+.main .cmain .box ul li a{float:left;background:url(list.png) 0px 3px no-repeat;width:100px;color:#0054a3;font:normal 14px/20px "Microsoft yahei";padding-left:25px;margin-right:28px;}
+
+/*￿ҳ￿￿￿
+.main .rmain{width:260px;height:auto;float:right;overflow: hidden;}
+.main .rmain .paper{height:390px; overflow:hidden;margin-bottom:12px;}
+.main .rmain .paper img{width:258px;height:360px;}
+.main .rmain .paper h2,.main .rmain .newslist h2,.main .rmain .date h2,.main .rmain .road h2{font:bold 16px/28px "Microsoft yahei";color:#0054a3; float:left;width:255px;}
+.main .rmain .paper h2 a,.main .rmain .newslist h2 a,.main .rmain .date h2 a,.main .rmain .road h2 a{float:right;display:block;font:normal 16px/28px "Microsoft yahei";color:#0054a3;background:url(more.gif) 0px 8px no-repeat;padding-left:20px;}
+.main .rmain .newslist{height:190px;overflow:hidden;}
+.main .rmain .date{height:190px; overflow:hidden;}
+.main .rmain .road{height:190px; overflow:hidden;}
+
+.main .rmain .newslist .bg img{border:1px #f08519 solid;width:258px;height:160px;}
+.main .rmain .date .bg{background:url(date.jpg) no-repeat;border:1px #f08519 solid;width:258px;height:147px;margin-top:28px;}
+.main .rmain .road .bg img{border:1px #f08519 solid;width:258px;height:147px;}
+
+
+
+
+
+
+
+/*Ƶ￿￿￿￿￿￿￿ 
+.mainpdbox{width:980px;margin: 0 auto; overflow: hidden;padding: 0;border:1px #f5be71 solid;}
+.mainpdbox .lmain{width:250px; height:auto;float: right;height:100%;overflow:hidden}
+.mainpdbox .lmain .lmainpd{width:250px;border:0;background:#fff;}
+
+.mainpdbox .lmain .lmainpd h3{height:50px;overflow: hidden; text-align: left;background:url(h3bg.png) 15px 18px no-repeat #2264ae;color:#fff; font:normal 16px/50px 'Microsoft yahei';padding-left:40px;border-radius:5px;-moz-border-radius: 5px; -webkit-border-radius: 5px; }
+.mainpdbox .lmain .lmainpd .list ul{}
+.mainpdbox .lmain .lmainpd .list li{background: url(li_blue.png) 1px 10px no-repeat; height: auto;overflow: hidden;padding-left: 10px; margin: 3px 5px; border-bottom: 1px dashed #CCC; clear: both;}
+.mainpdbox .lmain .lmainpd .list li a{font-size:12px; font-family: "Microsoft yahei";color: #000;}
+.mainpdbox .lmain .lmainpd .list li a:hover{text-decoration: underline;color:#2264ae;}
+.mainpdbox .lmain .lmainpd .list span{  display: block; float: right;font-size:12px;clear: both; overflow: hidden;color:#c5c5c5;}
+
+
+
+/*Ƶ￿￿￿￿￿￿8Ŀ*/
+.mainpdbox .lmain .zlmainpd h3{height:55px;overflow: hidden; text-align: left;background:url(list-tit.png) no-repeat;color:#fff; font:normal 16px/50px 'Microsoft yahei';padding-left:40px;}
+.mainpdbox .lmain .zlmainpd{height:100%;border:0;line-height: 50px;}
+.mainpdbox .lmain .zlmainpd .list ul{}
+.mainpdbox .lmain .zlmainpd .list li a{height:50px; text-align: left;padding-left: 30px; font:normal 16px/50px 'Microsoft yahei';color:#707070;display: block; background:url(menu_arrow.gif) no-repeat;}
+.mainpdbox .lmain .zlmainpd .list li a:hover{background:url(menu_arrow.gif) 0px -50px no-repeat;overflow: hidden;text-align:left;display: block;}
+
+
+
+
+
+
+/*Ƶ￿￿￿￿￿￿￿
+.mainpdbox .rmain{width:727px;height:100%;float: left;overflow:hidden;background:#fff;border:1px #dedede solid;border-right:1px #f5be71 solid;}
+.mainpdbox .rmain h3{width:760px; height:38px;float: left; overflow: hidden; font: normal 16px/38px 'Microsoft yahei'; padding-left: 15px;color: #333;border-bottom: #2264ae 3px solid; }
+.mainpdbox .rmain h3 a{float: right; background: url(more.gif) 0px 1px no-repeat;text-indent: -9999em; overflow: hidden;width:30px;height: 18px;line-height: 20px;margin-top:15px;}
+.mainpdbox .rmain h3 a:hover{text-indent: -9999em; overflow: hidden;  width:30px; height: 18px;border:0px;}
+
+.mainpdbox .rmain .list ul {}
+.mainpdbox .rmain .list li{ overflow:hidden;line-height: 31px; height: 31px; background: url(li.png) 5px 15px no-repeat; padding-left:20px; margin: 3px 5px; border-bottom:#d8d8d8 1px dotted;clear:both; }
+.mainpdbox .rmain .list li span{overflow:hidden;float: right;font: normal 12px/35px 'Microsoft yahei';}
+.mainpdbox .rmain .list li a{font: normal 14px/30px 'Microsoft yahei';overflow:hidden;}
+.mainpdbox .rmain .list li a:hover{text-decoration: underline;overflow:hidden;color:#2264ae;}
+
+
+
+
+
+/*￿￿ҳ*/ 
+    /*￿￿ǰλ￿*/
+.mainpdbox .rmain .position { float:left;background: url(home.png) 5px 6px no-repeat; height: 25px; color: #999; padding-left: 25px; overflow: hidden;clear: both; width:687px;margin:0 auto;font: normal 14px/25px 'Microsoft yahei';}
+.mainpdbox .rmain .position a{color:#999;}
+.mainpdbox .rmain .position a:hover{color: #129cfc;}
+
+     /*￿￿*/
+.mainpdbox .rmain .article{ width:700px;margin:0 auto;height: 100%;}
+.mainpdbox .rmain .article h3{ text-align:center;width:700px;height:auto;background-image:none;text-align: center;line-height: 35px; font-size: 24px;padding: 25px 0px 10px 10px;border:none;background:none;color: #333;margin:0 auto;}
+.mainpdbox .rmain .article .infoBox{text-align: left;padding: 10px; margin: 0 0 15px 0; font: 12px Tahoma; text-align: center; color: #999; cursor:pointer;border-bottom:1px #ccc solid; }
+.mainpdbox .rmain .article #content{width:640px; margin:0 auto; margin-top:20px;overflow: hidden; padding:10px; font-size:16px;height:100%;}
+.mainpdbox .rmain .article .page img { cursor: pointer; }
+.mainpdbox .rmain .article .page{width:400px;margin: 0 auto; text-align: center;}
+.mainpdbox .rmain .article .page a, .article .page a:visited, .article .page span { padding: 2px 5px; margin: 0 3px 0 0; border: 1px solid #999; }
+
+.mainpdbox .rmain .article .other{width:700px; margin:0 auto;border-top:#dcdcdc 1px dashed;padding:10px;}
+.mainpdbox .rmain .article .other a{ font-size: 12px;}
+.mainpdbox .rmain .article .other a:hover{text-decoration: underline;}
+
+.mainpdbox .rmains{/*border:1px #f5be71 solid;*/width:100%;margin:0 auto;}
+.mainpdbox .rmains .article{ width:719px;margin:0 auto;height: 100%;}
+.mainpdbox .rmains .article h3{ text-align:center;width:700px;height:auto;background-image:none;text-align: center;line-height: 35px; font-size: 24px;padding: 10px 0px 10px 10px;border:none;background:none;color: #333;}
+.mainpdbox .rmains .article .infoBox{text-align: left;padding: 10px; margin: 0 0 15px 0; font: 12px Tahoma; text-align: center; color: #999; cursor:pointer;border-bottom:1px #ccc solid; }
+.mainpdbox .rmains .article #content{width:680px; margin:0 auto; overflow: hidden; padding:10px; font-size:16px;height:100%;}
+.mainpdbox .rmains .article .page img { cursor: pointer; }
+.mainpdbox .rmains .article .page{width:400px;margin: 0 auto; text-align: center;}
+.mainpdbox .rmains .article .page a, .article .page a:visited, .article .page span { padding: 2px 5px; margin: 0 3px 0 0; border: 1px solid #999; }
+
+.mainpdbox .rmains .article .other{width:700px; margin:0 auto;border-top:#dcdcdc 1px dashed;padding:10px;}
+.mainpdbox .rmains .article .other a{ font-size: 12px;}
+.mainpdbox .rmains .article .other a:hover{text-decoration: underline;}
+
+/*ȱ￿￿￿￿￿
+.mainpdbox .rmains .position {text-align:left;background: url(home.png) 5px 9px no-repeat; height: 25px; color: #999; padding-left: 25px; overflow: hidden;clear: both; width:1000px;margin:0 auto;font: normal 14px/30px 'Microsoft yahei';}
+.mainpdbox .rmains .position a{color:#999;}
+.mainpdbox .rmains .position a:hover{color: #129cfc;}
+
+
+
+/*￿￿￿￿ʽ*/
+#fenye{clear:both;padding-top:15px;}
+#fenye a{text-decoration:none; display:inline;}
+#fenye .prev,#fenye .next{width:52px; text-align:center;}
+#fenye a.curr{width:22px;background:#1f3a87; border:1px solid #dcdddd; color:#fff; font-weight:bold; text-align:center;}
+#fenye a.curr:visited {color:#fff;}
+#fenye a{color:#1E50A2;background:#fff; margin:0px 5px; border:1px solid #dcdddd; float:left; text-align:center;height:22px;line-height:22px}
+#fenye a.num{width:22px;}
+#fenye a:visited{color:#1f3a87;} 
+#fenye a:hover{color:#fff; background:#1E50A2; border:1px solid #1E50A2;float:left;}
+#fenye span{line-height:30px;}
+
+
+.page { padding: 15px; text-align: center; }
+.page img { cursor: pointer; }
+.page a, .page a:visited, .page span { padding: 2px 5px; margin: 0 3px 0 0; border: 1px solid #999; }
+.page a:hover, .page .current { background: #0479EB; border: 1px solid #002A96; color: #fff; }
+.page .current { padding: 2px 5px; }
+.page .disabled { border: 1px solid #ccc; color: #ccc; padding: 2px 5px; }
+
+/*￿ײ￿*/
+.footer{background:url(footop.png) repeat-x;min-width:1200px;}
+.footer .foot{background:url(foot.png) 0px 50px no-repeat; text-align:center;margin:0 auto;width:886px;height:120px;}
+.footer .bottom {height: 160px;width:1060px;margin:0 auto;background:url(iphone.png) 10px 20px no-repeat;}
+.footer .bottom  .lbottom{float: left;padding:8px 90px;width:400px;}
+.footer .bottom  .lbottom p{font:normal 14px/24px "΢￿￿￿￿;color:#333;}
+.footer .bottom  .rbottom{float: right;padding-top: 8px;}
+.footer .bottom  .rbottom p{font:normal 14px/24px "΢￿￿￿￿; text-align:right;color:#333;}
+.footer .bottom  .rbottom p:nth-child(3n){font:normal 14px/24px "΢￿￿￿￿; text-align:right;color:#333;/*margin-top:50px;*/}
+.small { font: bold 10px "Times New Roman"; color: #01458E; }
+.big { font: bold 14px "Times New Roman"; }
+
+
+
+/*￿￿*/
+.titles{margin:0 auto; width:960px; overflow:text-align:center;}
+.titles p{width:310px; background:url(titlebg.png) 0px 13px repeat-x;margin:0 auto;letter-spacing: 2px;margin-bottom:20px;}
+.titles p span{font:bold 28px/20px "Microsoft yahei";color:#2264ae;padding:15px;background:#fff; margin-left:75px;}
+.titles a{ float:right;font:normal 16px/25px "Microsoft yahei";color:#0054a3;height:25px;display:block;margin-top:-20px;}
+.titles a:hover{ text-decoration:underline;}
+
+.newmain{ width:1060px;height:100%;margin:0 auto; }
+/*￿ҳ￿￿￿
+.newmain .lmain{width:320px;height:auto;float:left;overflow: hidden;margin-right:48px;}
+
+/*￿￿￿￿￿￿
+.newmain .lmain .prom{height:auto; overflow:hidden;margin-bottom:10px;}
+.newmain .lmain .class{height:170px; overflow:hidden;}
+/*￿￿*/
+.newmain .lmain .prom h2,.newmain .cmain  h2,.newmain .rmain .paper h2,.newmain .rmain .bg h2,.newmain .lmain .per h2{text-align:center;display:block;font:bold 20px/28px "Microsoft yahei";color:#0054a3; width:320px;margin-bottom:10px;letter-spacing: 2px;}
+/*￿￿￿￿￿Ӧ￿ǰ￿￿*/
+.newmain .lmain .per{height:auto; overflow:hidden;margin-bottom:3px;}
+.newmain .lmain .per {font:normal 14px/25px "Microsoft yahei";margin-top:5px;}
+.newmain .lmain .per .bg table img{width:14px;height:14px; margin:8px 3px 0px 3px;}
+.newmain .lmain .per .bg a{ float:right;font:normal 16px/25px "Microsoft yahei";color:#0054a3;}
+.newmain .lmain .prom .bg a{ float:right;font:normal 16px/25px "Microsoft yahei";color:#0054a3;}
+/*ͼƬ￿ߴ￿
+.newmain .lmain .prom .bg img,.newmain .cmain .box .bg img,.newmain .rmain .paper img{width:320px;height:200px;}
+.newmain .lmain .prom .bg .fw{widht:320px; height:125px;}
+.newmain .lmain .per .bg .fw-1{widht:295px; height:200px;margin:0px 10px;}
+.newmain .cmain .box .bg .fw-3{widht:320px; height:224px;}
+.newmain .cmain .box .bg .fw-4{widht:320px; height:210px;}
+.newmain .rmain .paper .fw-5{width:320px;height:160px;}
+.newmain .rmain .bg .fw-6{widht:320px; height:110px;}
+.newmain .lmain .prom .bg p{font:normal 14px/25px "Microsoft yahei";text-indent:2em;margin-bottom:5px;letter-spacing: 2px;}
+.newmain .lmain .per .bg img{width:320px;height:240px;}
+
+/*￿￿￿￿*/
+.newmain .lmain .per .bg p{font:bold 16px/25px "Microsoft yahei";margin-bottom:5px; text-align:center;}
+.newmain .cmain .box .bg .bs{font: normal 14px/25px "Microsoft yahei";margin-bottom:5px; text-align:left;letter-spacing: 0px;}
+
+/*￿￿￿￿￿￿ҳ￿￿￿
+.newmain .cmain{width:330px;height:100%;float:left;overflow: hidden;}
+.newmain .cmain .box{width:330px; height:auto;overflow:hidden;}
+.newmain .cmain  p{font:normal 14px/25px "Microsoft yahei";text-indent:2em;letter-spacing: 2px;}
+.newmain .cmain a{ float:right;font:normal 16px/28px "Microsoft yahei";color:#0054a3;}
+.newmain .cmain a:hover,.newmain .lmain .per .bg a:hover,.newmain .rmain  .bg a:hover,.newmain .rmain .paper a:hover,.newmain .lmain .prom .bg a:hover{ text-decoration:underline;}
+.newmain .cmain span{font:normal 14px/25px "Microsoft yahei";margin-bottom:20px;display:block;}
+
+
+
+/*￿￿￿￿￿￿ҳ￿￿￿
+.newmain .rmain{width:320px;height:auto;float:right;overflow: hidden;}
+.newmain .rmain .paper{height:auto; overflow:hidden;margin-bottom:12px;}
+.newmain .rmain .paper p{font:normal 14px/25px "Microsoft yahei";text-indent:2em;}
+
+.newmain .rmain .bg{font:normal 14px/25px "Microsoft yahei";margin-top:3px;}
+.newmain .rmain .bg img{width:320px;height:260px;}
+
+.newmain .rmain  .bg table img{width:14px;height:14px; margin:8px 3px 0px 3px;}
+.newmain .rmain  .bg a{ float:right;font:normal 16px/25px "Microsoft yahei";color:#0054a3;}
+.newmain .rmain  .paper a{ float:right;font:normal 16px/25px "Microsoft yahei";color:#0054a3;}
+
+
+/*ѧ￿ƽ￿￿*/
+.news{width:1060px;margin:0 auto;}
+.news p{font:normal 14px/25px "Microsoft yahei"; letter-spacing:1px;margin-bottom:15px;}
+
+.news a{float:right;font:normal 16px/25px "Microsoft yahei";color:#0054a3;}
+.news a:hover{text-decoration:underline;}
+.newmain{margin-top:40px;}
+
+
+.newmain .lmains{width:500px;height:auto;float:left;margin-right:50px; overflow:hidden;}
+.newmain .lmains .dep h2{text-align:center;display:block;font:bold 20px/50px "Microsoft yahei";color:#0054a3; margin-bottom:10px;letter-spacing: 2px;}
+.newmain .lmains .dep .bg p{font:normal 14px/25px "Microsoft yahei";text-indent:2em;margin-bottom:5px;letter-spacing: 2px;margin-top:20px;}
+.newmain .lmains .dep  a{ float:right;font:normal 16px/25px "Microsoft yahei";color:#0054a3;}
+.newmain .lmains .dep  a:hover{ text-decoration:underline;}
+.newmain .lmains .dep img{height:253px;display: table-cell; vertical-align: middle;text-align: center;}
+.newmain .rmains{width:500px;height:auto;float:right; overflow:hidden;}
+.newmain .rmains .lab h2{text-align:center;display:block;font:bold 20px/50px "Microsoft yahei";color:#0054a3;letter-spacing: 2px;}
+.newmain .rmains .lab .bg p{font:normal 14px/25px "Microsoft yahei";text-indent:2em;letter-spacing: 2px;}
+.newmain .rmains .lab  a{ float:right;font:normal 16px/25px "Microsoft yahei";color:#0054a3;}
+.newmain .rmains .lab  a:hover{ text-decoration:underline;}
+
+/*￿￿￿￿￿￿ͼƬ*/
+.pic{width:1060px;margin:0 auto; overflow:hidden;height:240px;}
+.pic img{width:250px;height:200px;margin-right:16px;}
+.pic img:last-child{margin-right:0px;}
+
+.mainpdbox .rmains h3{width:100%; height:38px;float: left; overflow: hidden; font: normal 16px/38px 'Microsoft yahei'; padding-left: 15px;color: #333;border-bottom: #2264ae 3px solid; }
+.mainpdbox .rmains .list ul {}
+.mainpdbox .rmains .list li{ overflow:hidden;line-height: 31px; height: 31px; background: url(li.png) 5px 12px no-repeat; padding-left:20px; margin: 3px 5px; border-bottom:#d8d8d8 1px dotted;clear:both; }
+.mainpdbox .rmains .list li span{overflow:hidden;float: right;font: normal 12px/35px 'Microsoft yahei';}
+.mainpdbox .rmains .list li a{font: normal 14px/30px 'Microsoft yahei';overflow:hidden;}
+.mainpdbox .rmains .list li a:hover{text-decoration: underline;overflow:hidden;color:#2264ae;}

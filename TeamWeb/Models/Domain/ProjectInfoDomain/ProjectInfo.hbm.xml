@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="TeamWeb" namespace="TeamWeb.Models.Domain.ProjectInfoDomain" default-lazy="false">
+  <class name="ProjectInfo" table="PROJECTINFO">
+    <id name="PROJECTCODE">
+      <column name="PROJECTCODE" sql-type="char(32)" not-null="true"/>
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="PROJECTNAME" column="PROJECTNAME"/>
+    <property name="PROJECTBIGCLASS" column="PROJECTBIGCLASS"/>
+    <property name="PROJECTSMALLCLASS" column="PROJECTSMALLCLASS"/>
+    <property name="PROJECTMANAGER" column="PROJECTMANAGER"/>
+    <property name="PROJECTGROUPER" column="PROJECTGROUPER"/>
+    <property name="PROJECTMEMBER" column="PROJECTMEMBER"/>
+    <property name="PROJECTSTART" column="PROJECTSTART"/>
+    <property name="PROJECTEND" column="PROJECTEND"/>
+    <property name="PROJECTPAGE" column="PROJECTPAGE"/>
+    <property name="PROJECTIMAGE" column="PROJECTIMAGE"/>
+    <property name="RROJECTTITLE" column="RROJECTTITLE"/>
+  </class>
+</hibernate-mapping>

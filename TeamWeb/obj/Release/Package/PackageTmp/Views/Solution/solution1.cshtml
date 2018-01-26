@@ -1,0 +1,506 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>南理工自动化研究所</title>
+    <link rel="stylesheet" href='@Url.Content("~/Content/CSS/amazeui.css")' />
+    <link rel="stylesheet" href='@Url.Content("~/Content/CSS/common.min.css")' />
+    <link rel="stylesheet" href='@Url.Content("~/Content/CSS/solution.min.css")' />
+    <script type="text/javascript" src='@Url.Content("~/Scripts/jquery-2.1.0.js")'></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            show1("people"); //数据库projectname字段内数据末尾不能有换行符,否则json转化会出错
+            m_show1("military");
+        })
+    </script>
+    <script type="text/javascript">
+        //展示前8个项目
+        function show1(projecttype) {
+            $("#btn2").remove();//收起按钮删除
+            var url = '@Url.Action("ListProject","Solution")';
+            $.get(url, { projecttype: projecttype }, function (response) {
+              // alert(response);
+                var dataset = eval("(" + response + ")");
+                //  alert(dataset[0].projectcode);
+                var content = "";
+                if (dataset.length <= 7) {
+                    for (var i = 0, j = 0; i <= dataset.length - 1; i++) {
+                        j = i + 1;
+                        content+=
+                            "<div class='am-u-md-4 am-u-sm-6 project-icon' id='project" + j + "'>" +
+                                "<a href='/solution/work" + dataset[i].projectpage + "'>" +
+                                   "<div class='news-ul-liall'>" +
+                                      "<img class='slide-img' src='/Content/Images/solution/cover/" + dataset[i].projectimage + "'/>" +
+                                      "<p>" + dataset[i].projectsmallclass + ":" + dataset[i].projectname + "</p>" +
+                                      "<span >查看更多<i class='am-icon-angle-double-right'></i></span>" +
+                                   "</div>" +
+                                "</a>" +
+                           "</div>"       
+                    }
+                    $(".people").html(content);
+                }
+                else {
+                    for (var i = 0, j = 0; i <=7; i++) {
+                        j = i + 1;
+                      content+=
+                            "<div class='am-u-md-4 am-u-sm-6 project-icon' id='project" + j + "'>" +
+                                "<a href='/solution/work" + dataset[i].projectpage + "'>" +
+                                   "<div class='news-ul-liall'>" +
+                                      "<img class='slide-img' src='/Content/Images/solution/cover/" + dataset[i].projectimage + "'/>" +
+                                      "<p>" + dataset[i].projectsmallclass + ":" + dataset[i].projectname + "</p>" +
+                                      "<span >查看更多<i class='am-icon-angle-double-right'></i></span>" +
+                                   "</div>" +
+                                "</a>" +
+                           "</div>"
+                         
+                    }
+                    $(".people").html(content);
+                    $(".solution-container").append("<button id='btn1' class='a' onclick='show2(\"people\")'>展开更多<i class='am-icon-angle-double-down'></i></button>");
+                }
+            })
+        }
+        //按按钮后，展示剩余的
+        function show2(projecttype) {
+            $("#btn1").remove();//展开更多按钮删除
+            $.get("/Solution/ListProject", { projecttype: projecttype }, function (response) {
+                // alert(response);
+                var dataset = eval("(" + response + ")");
+                //  alert(dataset[0].projectcode);
+                for (var i = 8, j = 0; i <= dataset.length - 1; i++) {
+                    j = i + 1;
+                    $(".people").append(
+                        "<div class='am-u-md-4 am-u-sm-6 project-icon' id='project" + j + "'>" +
+                            "<a href='/solution/work" + dataset[i].projectpage + "'>" +
+                               "<div class='news-ul-liall'>" +
+                                  "<img class='slide-img' src='/Content/Images/solution/cover/" + dataset[i].projectimage + "'/>" +
+                                  "<p>" + dataset[i].projectsmallclass + ":" + dataset[i].projectname + "</p>" +
+                                  "<span >查看更多<i class='am-icon-angle-double-right'></i></span>" +
+                               "</div>" +
+                            "</a>" +
+                       "</div>"
+                       );
+                }
+                $(".solution-container").append("<button id='btn2' class='a' onclick='show1(\"people\")'>收起<i class='am-icon-angle-double-up'></i></button>");
+            })
+        }
+        //展示前8个项目
+        function m_show1(projecttype) {
+            $("#btn2_m").remove();//收起按钮删除
+            $.get("/Solution/ListProject", { projecttype: projecttype }, function (response) {
+                // alert(response);
+                var dataset = eval("(" + response + ")");
+                //  alert(dataset[0].projectcode);
+                var content = "";
+                if (dataset.length <= 8) {
+                    for (var i = 0, j = 0; i <= dataset.length - 1; i++) {
+                        j = i + 1;
+                        content +=
+                            "<div class='am-u-md-4 am-u-sm-6 project-icon' id='project" + j + "'>" +
+                                "<a href='/solution/work" + dataset[i].projectpage + "'>" +
+                                   "<div class='news-ul-liall'>" +
+                                      "<img class='slide-img' src='/Content/Images/solution/cover/" + dataset[i].projectimage + "'/>" +
+                                      "<p>" + dataset[i].projectsmallclass + ":" + dataset[i].projectname + "</p>" +
+                                      "<span >查看更多<i class='am-icon-angle-double-right'></i></span>" +
+                                   "</div>" +
+                                "</a>" +
+                           "</div>"
+                    }
+                    $(".military").html(content);
+                }
+                else {
+                    for (var i = 0, j = 0; i <= 7; i++) {
+                        j = i + 1;
+                        content +=
+                              "<div class='am-u-md-4 am-u-sm-6 project-icon' id='project" + j + "'>" +
+                                  "<a href='/solution/work" + dataset[i].projectpage + "'>" +
+                                     "<div class='news-ul-liall'>" +
+                                        "<img class='slide-img' src='/Content/Images/solution/cover/" + dataset[i].projectimage + "'/>" +
+                                        "<p>" + dataset[i].projectsmallclass + ":" + dataset[i].projectname + "</p>" +
+                                        "<span >查看更多<i class='am-icon-angle-double-right'></i></span>" +
+                                     "</div>" +
+                                  "</a>" +
+                             "</div>"
+
+                    }
+                    $(".military").html(content);
+                    $(".military-container").append("<button id='btn1_m' class='a' onclick='m_show2(\"military\")'>展开更多<i class='am-icon-angle-double-down'></i></button>");
+                }
+            })
+        }
+        //按按钮后，展示剩余的
+        function m_show2(projecttype) {
+            $("#btn1_m").remove();//展开更多按钮删除
+            $.get("/Solution/ListProject", { projecttype: projecttype }, function (response) {
+                // alert(response);
+                var dataset = eval("(" + response + ")");
+                //  alert(dataset[0].projectcode);
+                for (var i = 8, j = 0; i <= dataset.length - 1; i++) {
+                    j = i + 1;
+                    $(".military").append(
+                        "<div class='am-u-md-4 am-u-sm-6 project-icon' id='project" + j + "'>" +
+                            "<a href='/solution/work" + dataset[i].projectpage + "'>" +
+                               "<div class='news-ul-liall'>" +
+                                  "<img class='slide-img' src='/Content/Images/solution/cover/" + dataset[i].projectimage + "'/>" +
+                                  "<p>" + dataset[i].projectsmallclass + ":" + dataset[i].projectname + "</p>" +
+                                  "<span >查看更多<i class='am-icon-angle-double-right'></i></span>" +
+                               "</div>" +
+                            "</a>" +
+                       "</div>"
+                       );
+                }
+                $(".military-container").append("<button id='btn2_m'class='a' onclick='m_show1(\"military\")'>收起<i class='am-icon-angle-double-up'></i></button>");
+            })
+        }
+    </script>
+    <style>
+        [class*="am-u-"] + [class*="am-u-"]:last-child {
+    float: left;
+}
+        .a{
+            margin-left:50%;
+        }
+        .project-cont{
+            padding-left:6.8%;
+            padding-right:6.8%;
+        }
+        .project-icon{
+            margin-bottom:5%;
+            float:left;
+            width:320px;  
+        }
+        .news-ul-liall p{
+            color:#000000;
+            height:2em;
+        }
+        .news-ul-liall span{
+            border-style:outset;
+            border-width:thin;
+            border-color:#0e90d2;
+            padding:2px;
+            padding-left:4px;
+        }
+        .am-menu ul{
+            font-size:1em;
+            }
+        input[type=button]{
+            height:40px;
+        }
+
+      .solutions-tabs-ul {
+	width: 60% !important;
+	margin: 0 auto !important;
+	background-color: #ffffff !important;
+	padding-top: 30px !important;
+}
+
+.solutions-tabs-ul li {
+	height: 80px !important;
+	margin-top: 20px;
+	border-right: 20px solid #ffffff;
+	position: relative;
+}
+
+.solutions-tabs-ul li a div {
+	width: 90%;
+	margin: 0 auto;
+}
+
+.solutions-tabs-li-ac a,
+.solutions-tabs-ul li a {
+	color: #ffffff !important;
+}
+.solutions-tabs-ul li:hover {
+	background-color: #005489;
+	-webkit-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	-ms-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	transition: all 0.4s;
+}
+
+.solutions-tabs-ul li a i {
+	display: block;
+	font-size: 30px;
+	margin-top: 5px;
+}
+
+.solutions-tabs-ul li a span {
+	display: block;
+	width: 100%;
+	text-align: center;
+	position: absolute;
+	bottom: -5px
+}
+.solutions-tabs-ul-li1 {
+	background-color: #0171b7;
+}
+
+.solutions-tabs-ul-li2 {
+	background-color: #0086da;
+}
+
+.solutions-tabs-ul-li3 {
+	background-color: #429ed7;
+}
+
+.solutions-tabs-ul-li4 {
+	background-color: #6eb6e2;
+}
+
+.solutions-tabs-content {
+	background-color: #ffffff;
+	padding: 20px 20px 0 20px;
+	width: 100%;
+	margin-top: 30px;
+}
+
+    .solutions-tabs-content {
+
+  padding: 20px 5px 0 5px;
+
+}
+    .solutions-tabs-ul li a i {
+		display: block;
+		margin-top: 10px;
+	}
+    	.solutions-tabs-ul {
+  padding-top: 10px !important;
+}
+        .solutions-tabs-ul li a i {
+		display: block;
+		margin-top: 10px;
+	}
+        .am-tabs-d2 .am-tabs-nav > .am-active{
+            background-color:#005489;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <!--===========layout-header================-->
+        <div class="layout-header am-hide-sm-only">
+            <!--topbar start-->
+            <div class="topbar">
+                <div class="container">
+                    <div class="am-g">
+                        <div class="am-u-md-3">
+                            <div class="topbar-left">
+                                <i class="am-icon-globe"></i>
+                                <div class="am-dropdown" data-am-dropdown>
+                                    <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle>Language <span class="am-icon-caret-down"></span></button>
+                                    <ul class="am-dropdown-content">
+                                        <li><a href="#">English</a></li>
+                                        <li class="am-divider"></li>
+                                        <li><a href="#">Chinese</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-u-md-9">
+                            <div class="topbar-right am-text-right am-fr">
+                                Follow us
+                                <i class="am-icon-facebook"></i>
+                                <i class="am-icon-twitter"></i>
+                                <i class="am-icon-google-plus"></i>
+                                <i class="am-icon-pinterest"></i>
+                                <i class="am-icon-instagram"></i>
+                                <i class="am-icon-linkedin"></i>
+                                <i class="am-icon-youtube-play"></i>
+                                <i class="am-icon-rss"></i>
+                                <a href='@Url.Action("login","Login")'>登录</a>
+                                <a href='@Url.Action("register","Login")'>注册</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--pc端导航栏-->
+            <div class="header-box" data-am-sticky>
+                <div class="nav-contain">
+                    <div class="nav-inner">
+                        <ul class="am-nav am-nav-pills am-nav-justify">
+                            <li class=""><a href='@Url.Action("index","Index")'>首页</a></li>
+                            <li><a href='@Url.Action("news","News")'>新闻中心</a></li>
+                            <li style="text-align:center">
+                                科研成果
+                                <ul class="sub-menu">
+                                    <li class="menu-item"><a href='@Url.Action("theory","Solution")'>理论研究</a></li>
+                                    <li class="menu-item"><a href='@Url.Action("solution","Solution")'>项目研究</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href='@Url.Action("reaserch","Reaserch")'>研究领域</a>
+                            </li>
+                            <li><a href='@Url.Action("about","We")'>团队介绍</a></li>
+                            <li><a href='@Url.Action("join","We")'>加入我们</a></li>
+                            <li><a href='@Url.Action("contact","We")'>联系我们</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--移动端导航栏-->
+        <div class="m-header">
+            <div class="am-g am-show-sm-only">
+                <div class="am-u-sm-2">
+                    <a href="#mheader" class="am-menu-toggle-icon am-icon-bars"></a>
+                    <div class="menu-bars">
+                        <nav data-am-widget="menu" class="am-menu  am-menu-dropdown1"
+                             data-am-menu-collapse>
+                            <a href="javascript: void(0)" class="am-menu-toggle"></a>
+                            <ul class="am-menu-nav am-avg-sm-1 am-collapse" id="mheader">
+                                <li class="am-active"><a href='@Url.Action("index","Index")' class="">首页</a></li>
+                                <li class="">
+                                    <a href='@Url.Action("news","News")' class="">新闻中心</a>
+                                </li>
+                                <li class="am-parent">
+                                    <a href="##" class="">科研成果</a>
+                                    <ul class="am-menu-sub am-collapse  am-avg-sm-3 ">
+                                        <li class="">
+                                            <a href='@Url.Action("theory", "Solution")' class="">理论研究</a>
+                                        </li>
+                                        <li class="">
+                                            <a href='@Url.Action("solution","Solution")' class="">项目研究</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="">
+                                    <a href='@Url.Action("reaserch","Reaserch")' class="">研究领域</a>
+                                </li>
+                                <li class="">
+                                    <a href='@Url.Action("about", "We")' class="">团队介绍</a>
+                                </li>
+                                <li class="">
+                                    <a href='@Url.Action("join", "We")' class="">加入我们</a>
+                                </li>
+                                <li class="">
+                                    <a href='@Url.Action("contact", "We")' class="">联系我们</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="am-u-sm-5 am-u-end">
+                    <div class="m-logo">
+                        <a href=""><img src='@Url.Content("~/Content/Images/logo.png")' alt="" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--===========layout-container================-->
+        <div class="layout-container">
+            <div class="page-header">
+                <div class="am-container">
+                    <h1 class="page-header-title">项目研究</h1>
+                </div>
+            </div>
+
+            <div data-am-widget="tabs" class="am-tabs am-tabs-default ">
+
+                <ul class="am-tabs-nav am-cf solutions-tabs-ul ">
+                    <li class="am-active solutions-tabs-ul-li1"><a class="china head" href="[data-tab-panel-0]"><i class=" am-icon-desktop"></i><span>民用项目</span></a></li>
+                    <li class="solutions-tabs-ul-li2"><a class="english head" href="[data-tab-panel-1]"><i class=" am-icon-mobile-phone mobile-phone"></i><span>军用项目</span></a></li>        
+                </ul>
+
+                <div class="am-tabs-bd solutions-tabs-content ">
+                    <div data-tab-panel-0 class="am-tab-panel am-active">
+                        <div class="breadcrumb-box">
+                            <div class="am-container">
+                                <ol class="am-breadcrumb">
+                                    <li><a href='@Url.Action("index","Index")'>首页</a></li>
+                                    <li><a href='@Url.Action("theory","Solution")'>项目研究</a></li>
+                                    <li class="am-active">民用项目</li>
+                                </ol>
+                            </div>
+                        </div>
+                        <!--主要内容-->
+                        <div class="solution-container">
+                            <div class="am-g project-cont people">
+
+
+                            </div>
+                        </div>
+                          
+
+                    </div>
+                    <div data-tab-panel-1 class="am-tab-panel ">
+                        <div class="breadcrumb-box">
+                            <div class="am-container">
+                                <ol class="am-breadcrumb">
+                                    <li><a href='@Url.Action("index","Index")'>首页</a></li>
+                                    <li><a href='@Url.Action("theory","Solution")'>项目研究</a></li>
+                                    <li class="am-active">军用项目</li>
+                                </ol>
+                            </div>
+                        </div>
+                        <!--主要内容-->
+                        <div class="military-container">
+                            <div class="am-g project-cont military">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>   
+
+
+      
+            
+        </div>
+
+
+
+        <!--===========layout-footer================-->
+        <div class="layout-footer">
+            <div class="footer">
+                <div style="background-color:#383d61" class="footer--bg"></div>
+                <div class="footer--inner">
+                    <div class="container">
+                        <div class="footer_main">
+                            <div class="am-g">
+                                
+                                    <div class="footer_main--column">
+                                        <strong class="footer_main--column_title">南理工自动化研究所</strong>
+                                        <div class="footer_about">
+                                            <p class="footer_about--text">
+                                                云适配(AllMobilize Inc.) 是全球领先的HTML5企业移动化解决方案供应商，由前微软美国总部IE浏览器核心研发团队成员及移动互联网行业专家在美国西雅图创立.
+                                            </p>
+                                            <p class="footer_about--text">
+                                                云适配跨屏云也成功应用于超过30万家企业网站，包括微软、联想等世界500强企业
+                                            </p>
+                                        </div>
+                                    </div>
+                                
+
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--右下角图标-->
+    
+    <div class="amz-toolbar" id="amz-toolbar" style="right:10px">
+        <a title="回到顶端" class="am-icon-btn am-icon-arrow-up" id="amz-go-top" href="#top" data-am-smooth-scroll></a>
+    </div>
+
+    <script src='@Url.Content("~/Scripts/jquery-2.1.0.js")' charset="utf-8"></script>
+    <script src='@Url.Content("~/Scripts/amazeui.js")' charset="utf-8"></script>
+</body>
+
+</html>
+

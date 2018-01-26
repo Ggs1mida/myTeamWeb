@@ -1,0 +1,215 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>南理工自动化研究所</title>
+    <link rel="stylesheet" href='@Url.Content("~/Content/CSS/amazeui.css")' />
+    <link rel="stylesheet" href='@Url.Content("~/Content/CSS/common.min.css")' />
+    <link rel="stylesheet" href='@Url.Content("~/Content/CSS/index.min.css")' />
+    <script src='@Url.Content("~/Scripts/jquery-2.1.0.js")' charset="utf-8"></script>
+    <style>
+        li{
+            list-style:none;
+        }
+        .layout-footer{
+            margin-top:50px;
+        }
+        .team{
+            margin-top:20px;
+        }
+        .cont{
+            padding-left:10%;
+            padding-right:10%;
+        }
+      
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <!--===========layout-header================-->
+        <div class="layout-header am-hide-sm-only">
+            <!--pc端导航栏-->
+            <div class="header-box" data-am-sticky>
+                <div class="nav-contain">
+                    <div class="nav-inner">
+                        <ul class="am-nav am-nav-pills am-nav-justify">
+                            <li class=""><a href='@Url.Action("index","Index")'>首页</a></li>
+                            <li><a href='@Url.Action("news","News")'>新闻中心</a></li>
+                            <li style="text-align:center">
+                                科研成果
+                                <ul class="sub-menu">
+                                    <li class="menu-item"><a href='@Url.Action("theory","Solution")'>理论研究</a></li>
+                                    <li class="menu-item"><a href='@Url.Action("solution","Solution")'>项目研究</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href='@Url.Action("reaserch","Reaserch")'>研究领域</a>
+                            </li>
+                            <li><a href='@Url.Action("about","We")'>团队介绍</a></li>
+                            <li><a href='@Url.Action("join","We")'>加入我们</a></li>
+                            <li><a href='@Url.Action("contact","We")'>联系我们</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--移动端导航栏-->
+        <div class="m-header">
+            <div class="am-g am-show-sm-only">
+                <div class="am-u-sm-2">
+                    <a href="#mheader" class="am-menu-toggle-icon am-icon-bars"></a>               
+                <div class="menu-bars">
+                        <nav data-am-widget="menu" class="am-menu  am-menu-dropdown1"
+                             data-am-menu-collapse>
+                            <a href="javascript: void(0)" class="am-menu-toggle"></a>
+                            <ul class="am-menu-nav am-avg-sm-1 am-collapse" id="mheader">
+                                <li class="am-active"><a href='@Url.Action("index","Index")' class="">首页</a></li>
+                                <li class="">
+                                    <a href='@Url.Action("news","News")' class="">新闻中心</a>
+                                </li>
+                                <li class="am-parent">
+                                    <a href="##" class="">科研成果</a>
+                                    <ul class="am-menu-sub am-collapse  am-avg-sm-3 ">
+                                        <li class="">
+                                            <a href='@Url.Action("theory", "Solution")' class="">理论研究</a>
+                                        </li>
+                                        <li class="">
+                                            <a href='@Url.Action("solution","Solution")' class="">项目研究</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="">
+                                    <a href='@Url.Action("reaserch","Reaserch")' class="">研究领域</a>
+                                </li>
+                                <li class="">
+                                    <a href='@Url.Action("about", "We")' class="">团队介绍</a>
+                                </li>
+                                <li class="">
+                                    <a href='@Url.Action("join", "We")' class="">加入我们</a>
+                                </li>
+                                <li class="">
+                                    <a href='@Url.Action("contact", "We")' class="">联系我们</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="am-u-sm-5 am-u-end">
+                    <div class="m-logo">
+                        <a href=""><img src='@Url.Content("~/Content/Images/logo.png")' alt="" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--===========layout-container================-->
+        <!--大背景图片-->
+        <div class="layout-container">
+            <div class="page-header">
+                <div class="am-container">
+                    <h1 class="page-header-title">智慧互联与网络控制系统研究所</h1>
+                </div>
+            </div>
+        </div>
+
+        <!--团队简介-->
+        <div class="am-g team">
+            <div class="cont">
+        <div class="am-u-sm-7" id="team">
+            <div >
+                <div class="section--header">
+                    <h2 class="section--title">团队简介</h2>
+                    <pre class="section--description">目前智慧互联与网络控制系统研究所硕士研究生18人，在职工程硕士10余人，博士研究生5人。
+以张捷博士为主导的团队，涉及互联网，公安，军品等多个行业。
+                    </pre>
+                    <h3>研究方向</h3>
+                    <pre>实际工程研究方向： 1）火力指挥与控制系统； 2）嵌入式控制系统研究（基于51、ARM、DSP、CPLD/FPGA等芯片和PC104/ETX等模块）； 3）物联网/无线传感器网络； 4）传感器与检测系统（综合管理系统、随动系统、实时通信系统等）； 5）显控系统、集散控制系统与网络控制系统（基于以太网、CAN网等）；6）智慧互联与智能控制（互联网+警务、互联网+控制等）。
+基础理论研究方向： 火指控系统、无线传感器网络、网络控制系统、随机系统、故障检测与诊断等。</pre>
+                    <h3>欢迎各位加盟</h3>
+                    <pre>团队拥有严格、明确的管理制度，积极向上的学习氛围。
+热忱欢迎有志青年学子联系保送或者报考本课题组的博士研究生、直博研究生和硕士研究生</pre>
+                </div>
+            </div>
+        </div>
+        <div class="am-u-sm-5">
+            <h2>联系我们</h2>
+            <ul>
+                <li>
+                    <i class="contact_item--icon am-icon-phone"></i>
+                    <p class="contact_item--text">
+                     联系电话：李先生 <strong>18301780868</strong>,
+                    <br> Monday - Friday, 8am - 7pm
+                    </p>
+                </li>
+                <li>
+                    <i class="contact_item--icon am-icon-envelope-o"></i>
+                    <p class="contact_item--text">
+                        huilee_ce@163.com, <br />期待您的来信...
+                    </p>
+                </li>
+                <li>
+                    <i class="contact_item--icon am-icon-map-marker"></i>
+                    <p class="contact_item--text">
+                        江苏南京市孝陵卫200号南京理工大学自动化学院8楼8016室
+                    </p>
+                </li>
+                </ul>
+        </div>
+                </div>
+        </div>
+    </div>
+  
+
+
+
+
+    <!--===========layout-footer================-->
+    <div class="layout-footer">
+        <div class="footer">
+            <div style="background-color:#383d61" class="footer--bg"></div>
+            <div class="footer--inner">
+                <div class="container">
+                    <div class="footer_main">
+                        <div class="am-g">
+                          
+                                <div class="footer_main--column">
+                                    <strong class="footer_main--column_title">智慧互联与网络控制研究所</strong>
+                                    <div class="footer_about">
+                                        <p class="footer_about--text">
+                                            <a   href="http://lib.njust.edu.cn/">南理工图书馆</a> <a  href="http://www.njust.edu.cn/">南理工官网</a><a href="http://au.njust.edu.cn/">南理工自动化</a>                                     
+                                            <a  href="http://gs.njust.edu.cn/">南理工研究生院</a> <a  href="">财务网站</a>
+                                        </p>
+                                        <p class="footer_about--text">
+                                            Copyright(c)2017   智慧互联与网络控制研究所   All rights reserved   技术支持：8016团队
+                                        </p>
+                                    </div>
+                              
+                            </div>
+
+                      
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--右下角图标-->
+   
+    <div class="amz-toolbar" id="amz-toolbar" style="right:10px">
+        <a title="回到顶端" class="am-icon-btn am-icon-arrow-up" id="amz-go-top" href="#top" data-am-smooth-scroll></a>
+    </div>
+
+    <script src='@Url.Content("~/Scripts/jquery-2.1.0.js")' charset="utf-8"></script>
+    <script src='@Url.Content("~/Scripts/amazeui.js")' charset="utf-8"></script>
+
+</body>
+
+</html>

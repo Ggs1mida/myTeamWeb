@@ -1,0 +1,543 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>南理工自动化研究所</title>
+    <link rel="stylesheet" href='@Url.Content("~/Content/CSS/amazeui.css")' />
+    <link rel="stylesheet" href='@Url.Content("~/Content/CSS/common.min.css")' />
+    <link rel="stylesheet" href='@Url.Content("~/Content/CSS/about.min.css")' />
+    <script src='@Url.Content("~/Scripts/jquery-2.1.0.js")' charset="utf-8"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            showteacher();
+            showgraduate();
+            showungraduate();
+        })
+    </script>
+    <script>
+    function showteacher() {
+        var url = '@Url.Action("ListTeacher","We")';
+        $.get(url, function (response) {
+            // alert(response);
+            var dataset = JSON.parse(response.replace(/\r\n/g, "\\r\\n").replace(/\n/g, "\\\\n"));
+            var content = "";
+            var offcanvas = "";
+            //内容添加
+            for (var i = 0;i<=dataset.length-1;i++){
+                if (dataset[i].name == "张捷") {
+                    var imgurl = '@Url.Content("http://egov.jinyuc.com/teamweb/common/teacherimg/")' + dataset[i].photo;
+                    content = "<div class='am-g stylecont' id='teacher" + 1 + "'>" +    
+                                               "<h3 class='name'>" + dataset[i].name +
+                                               "</h3>" +
+                                               "<p class='title'>" + dataset[i].title +
+                                               "</p>" +
+                                               "<div class='our-company-img'>" +
+                                                   "<img src=\"" + imgurl + "\" style='width:30%;margin-left:35%' alt=''/>" +
+                                               "</div>" +
+                                               "<h3>荣誉称号</h3>" +
+                                               "<pre class='credit'>" + dataset[i].credit +
+                                               "</pre>" +
+                                       "<h3>研究方向</h3>" +
+                                       "<pre class='direction'>" + dataset[i].direction +
+                                       "</pre>" +
+                                       "<h3 >个人简介</h3>" +
+                                       "<pre class='indroduce'>" + dataset[i].introduce +
+                                       "</pre>" +
+                                "</div>" +
+                       "<br />" +
+                      "<hr class='section_divider -narrow' style='height:1px;border-top:1px dashed'>" +
+                      "<br />";
+                    offcanvas = "<li><a  id='btn" + 1 + "' href='#teacher" + 1 + "'>" + dataset[i].name + "</a></li>";
+                }
+            }
+            for (var i = 0, j = 2,k=0; i <= dataset.length - 1; i++,j++) {
+ 
+                if (dataset[i].name != "张捷") {                
+                    var imgurl = '@Url.Content("http://egov.jinyuc.com/teamweb/common/teacherimg/")' + dataset[i].photo;
+                    content += "<div class='am-g stylecont' id='teacher" + j + "'>" +
+           
+                                               "<h3 class='name'>" + dataset[i].name +
+                                               "</h3>" +
+                                               "<p class='title'>" + dataset[i].title +
+                                               "</p>" +
+                                               "<div class='our-company-img'>" +
+                                                   "<img src=\"" + imgurl + "\" style='width:30%;margin-left:35%' alt=''/>" +
+                                               "</div>" +
+                                               "<h3>荣誉称号</h3>" +
+                                               "<pre class='credit'>" + dataset[i].credit +
+                                               "</pre>" +
+                                       "<h3>研究方向</h3>" +
+                                       "<pre class='direction'>" + dataset[i].direction +
+                                       "</pre>" +
+                                       "<h3 >个人简介</h3>" +
+                                       "<pre class='indroduce'>" + dataset[i].introduce +
+                                       "</pre>" +
+                           "</div>" +
+                       "<br />" +
+                      "<hr class='section_divider -narrow' style='height:1px;border-top:1px dashed'>" +
+                      "<br />";
+                    offcanvas += "<li><a  id='btn" + j + "' href='#teacher" + j + "'>" + dataset[i].name + "</a></li>";
+                }
+                else {
+                    j = j - 1;
+                }
+            }
+            $(".teacher.about-container").append(content);
+            $(".menu-teacher").append(offcanvas);
+
+        })
+    }
+    function showgraduate() {
+        var url = '@Url.Action("ListStudent","We")';
+        $.post(url, { graduate: "1" }, function (response) {
+           //  alert(response);
+            var dataset = JSON.parse(response.replace(/\r\n/g, "\\r\\n").replace(/\n/g, "\\\\n"));
+            var doctor = "";
+            var master = "";
+            for (var i = 0, j = 0; i <= dataset.length - 1; i++) {
+                if (dataset[i].degree == "博士") {
+                    var imgurl = '@Url.Content("http://egov.jinyuc.com/teamweb/common/studentimg/")' + dataset[i].photo;
+                    doctor += "<div class='am-g stylecont'>" +
+                                        "<div class=' team-box'>" +                                        
+                                            "<div class='team_member--body '>" +
+                                                "<h3 class='team_member--name'>" + dataset[i].name + "</h3>" +
+                                                "<p class='team_member--position'>" + dataset[i].major + "</p>" +
+                                              
+                                                "<img style='width:30%' src=\"" + imgurl + "\" alt='' />" +
+                                          
+                                                "<pre >" + dataset[i].introduce + "</pre>" +
+                                            "</div>" +
+                                        "</div>" +
+                                    "</div>";
+                }
+                else if (dataset[i].degree == "研究生") {
+                    var imgurl = '@Url.Content("http://egov.jinyuc.com/teamweb/common/studentimg/")' + dataset[i].photo;
+                    master += "<div class='am-g stylecont'>" +
+                                        "<div class=' team-box'>" +
+                                            "<div class='team_member--body '>" +
+                                                "<h3 class='team_member--name'>" + dataset[i].name + "</h3>" +
+                                                "<p class='team_member--position'>" + dataset[i].major + "</p>" +
+                                             
+                                                "<img style='width:30%' src=\"" + imgurl + "\" alt='' />" +
+                                          
+                                                "<pre >" + dataset[i].introduce + "</pre>" +
+                                            "</div>" +
+                                        "</div>" +
+                                    "</div>";
+                }
+                else {; }
+            }
+            $(".graduate-d").html(doctor);
+            $(".graduate-m").html(master);
+        })
+
+    }
+    function showungraduate() {
+        var url = '@Url.Action("ListStudent","We")';
+        $.post(url, { graduate: "0" }, function (response) {
+            //alert(response);
+            var dataset = JSON.parse(response.replace(/\r\n/g, "\\r\\n").replace(/\n/g, "\\\\n"));
+            var doctor = "";
+            var master = "";
+            for (var i = 0, j = 0; i <= dataset.length - 1; i++) {
+                if (dataset[i].degree == "博士") {
+                    var imgurl = '@Url.Content("http://egov.jinyuc.com/teamweb/common/studentimg/")' + dataset[i].photo;
+                    doctor += "<div class='am-g stylecont'>" +
+                                        "<div class=' team-box'>" +
+                                            "<div class='team_member--body '>" +
+                                                "<h3 class='team_member--name'>" + dataset[i].name + "</h3>" +
+                                                "<p class='team_member--position'>" + dataset[i].major + "</p>" +
+                                          
+                                                "<img style='width:30%' src=\"" + imgurl + "\" alt='' />" +
+                                       
+                                                "<pre >" + dataset[i].introduce + "</pre>" +
+                                            "</div>" +
+                                        "</div>" +
+                                    "</div>";
+                }
+                else if (dataset[i].degree == "研究生") {
+                    var imgurl = '@Url.Content("http://egov.jinyuc.com/teamweb/common/studentimg/")' + dataset[i].photo;
+                    master += "<div class='am-g stylecont'>" +
+                                        "<div class=' team-box'>" +
+                                            "<div class='team_member--body '>" +
+                                                "<h3 class='team_member--name'>" + dataset[i].name + "</h3>" +
+                                                "<p class='team_member--position'>" + dataset[i].major + "</p>" +
+                                             
+                                                "<img style='width:30%' src=\"" + imgurl + "\" alt='' />" +
+                                        
+                                                "<pre >" + dataset[i].introduce + "</pre>" +
+                                            "</div>" +
+                                        "</div>" +
+                                    "</div>";
+                }
+                else {; }
+            }
+            $(".doctor").html(doctor);
+            $(".master").html(master);
+        })
+
+    }
+    function showcont0() {
+        $('#btn0').click();
+    }
+    function showcont1() {
+        $('#btn1').click();
+    }
+    function showcont2() {
+        $('#btn2').click();
+    }
+    function showcont3() {
+        $('#btn3').click();
+    }
+    function showcont4() {
+        $('#btn4').click();
+    }
+    function showcont5() {
+        $('#btn5').click();
+    }
+    </script>
+    <style>
+        .stylecont{
+            padding-left:5%;
+        }
+        .scrollspy-nav a.am-active {
+            color: #383d61;
+            font-weight: bold;
+        }
+        .section_divider{
+            width:100%;
+        }
+        h3.name{
+            color:#0e90d2;
+        }
+        [class*="am-u-"] + [class*="am-u-"]:last-child{
+            float:left;
+        }
+        li{
+            list-style:none;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <!--===========layout-header================-->
+        <div class="layout-header am-hide-sm-only">
+            <!--pc端导航栏-->
+            <div class="header-box" >
+                <div class="nav-contain">
+                    <div class="nav-inner">
+                        <ul class="am-nav am-nav-pills am-nav-justify">
+                            <li class=""><a href='@Url.Action("index","Index")'>首页</a></li>
+                            <li><a href='@Url.Action("news","News")'>新闻中心</a></li>
+                            <li style="text-align:center">
+                                科研成果
+                                <ul class="sub-menu">
+                                    <li class="menu-item"><a href='@Url.Action("theory","Solution")'>理论研究</a></li>
+                                    <li class="menu-item"><a href='@Url.Action("solution","Solution")'>项目研究</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href='@Url.Action("reaserch","Reaserch")'>研究领域</a>
+                            </li>
+                            <li><a href='@Url.Action("about","We")'>团队介绍</a></li>
+                            <li><a href='@Url.Action("join","We")'>加入我们</a></li>
+                            <li><a href='@Url.Action("contact","We")'>联系我们</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--移动端导航栏-->
+        <div class="m-header">
+            <div class="am-g am-show-sm-only">
+                <div class="am-u-sm-2">
+                    <a href="#mheader" class="am-menu-toggle-icon am-icon-bars"></a>
+                    <div class="menu-bars">
+                        <nav data-am-widget="menu" class="am-menu  am-menu-dropdown1"
+                             data-am-menu-collapse>
+                            <a href="javascript: void(0)" class="am-menu-toggle"></a>
+                            <ul class="am-menu-nav am-avg-sm-1 am-collapse" id="mheader">
+                                <li class="am-active"><a href='@Url.Action("index","Index")' class="">首页</a></li>
+                                <li class="">
+                                    <a href='@Url.Action("news","News")' class="">新闻中心</a>
+                                </li>
+                                <li class="am-parent">
+                                    <a href="##" class="">科研成果</a>
+                                    <ul class="am-menu-sub am-collapse  am-avg-sm-3 ">
+                                        <li class="">
+                                            <a href='@Url.Action("theory", "Solution")' class="">理论研究</a>
+                                        </li>
+                                        <li class="">
+                                            <a href='@Url.Action("solution","Solution")' class="">项目研究</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="">
+                                    <a href='@Url.Action("reaserch","Reaserch")' class="">研究领域</a>
+                                </li>
+                                <li class="">
+                                    <a href='@Url.Action("about", "We")' class="">团队介绍</a>
+                                </li>
+                                <li class="">
+                                    <a href='@Url.Action("join", "We")' class="">加入我们</a>
+                                </li>
+                                <li class="">
+                                    <a href='@Url.Action("contact", "We")' class="">联系我们</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="am-u-sm-5 am-u-end">
+                    <div class="m-logo">
+                        <a href=""><img src='@Url.Content("~/Content/Images/logo.png")' alt="" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--侧栏主要内容-->
+        <div class="am-g am-show-sm-only">
+            <div class="am-u-sm-2">
+                <div class="menu-bars">
+                    <nav data-am-widget="menu" class="am-menu  am-menu-offcanvas1" data-am-menu-offcanvas>
+                        <!--      <a href="javascript: void(0)" class="am-menu-toggle"></a> -->
+                        <div class="am-offcanvas" id="doc-oc-demo1">
+                            <div class="am-offcanvas-bar">
+                                <nav class="scrollspy-nav" data-am-scrollspynav data-am-sticky>
+                                    <ul class="am-menu-nav am-avg-sm-1">                                    
+                                            <li><a class="btn" onclick="showcont0()" >导师简介</a></li>
+                                            <li><a class="btn" onclick="showcont1()">学生介绍</a></li>
+                                            <li><a class="btn" onclick="showcont2()">已毕业博士生</a></li>
+                                            <li><a class="btn" onclick="showcont3()">已毕业硕士</a></li>
+                                            <li><a class="btn" onclick="showcont4()">在读博士生</a></li>
+                                            <li><a class="btn" onclick="showcont5()">在读硕士</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!--===========layout-container================-->
+        <div class="layout-container">
+            <div class="page-header">
+                <div class="am-container">
+                    <h1 class="page-header-title">团队介绍</h1>
+                </div>
+            </div>
+
+            <div class="breadcrumb-box">
+                <div class="am-container">
+                    <ol class="am-breadcrumb">
+                        <li><a href='@Url.Action("index","Index")'>首页</a></li>
+                        <li class="am-active">团队介绍</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="am-g">
+            <!--滚动导航-->
+            <div class="am-u-sm-2">
+                <div class=" am-hide-sm-only">
+
+                    <nav class="scrollspy-nav" data-am-scrollspynav="{offsetTop:76px}" data-am-sticky style="padding-top:80px">
+                        <ul>
+                            <li class="am-parent">
+                                <a id="btn0" href="#teacher" style="color:#000000" >导师简介</a>
+                                <ul  class="am-menu-sub menu-teacher">
+                                             
+                                </ul>
+                            </li>                           
+                            <li class="am-parent">
+                                <a id="btn1" href="#team" style="color:#000000">学生介绍</a>
+                                <ul data-am-smooth-scroll class="am-menu-sub menu-student">
+                                    <li><a id="btn2" href="#graduate-d">已毕业博士生</a></li>
+                                    <li><a id="btn3" href="#graduate-m">已毕业硕士</a></li>
+                                    <li><a id="btn4" href="#doctor">在读博士生</a></li>
+                                    <li><a id="btn5" href="#master">在读硕士</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+
+                </div>
+            </div>
+
+            <div class="am-u-sm-10">
+                <!--导师简介-->
+                <div class="section" id="teacher">
+                    <div class="container">
+                        <div class="section--header">
+                            <h2 class="section--title">导师介绍</h2>
+                        </div>                      
+                        <div class="about-container teacher">
+                            
+                            
+                                            
+                        </div>
+                      
+                    </div>
+                </div>
+                <hr class="section_divider -narrow" style="width:100%">             
+                <!--团队介绍-->
+                <div class="section" style="margin-top:0px;background-image: url('~/Content/Images/pattern-light.png');" id="team">
+                    <div class="container">
+                        <div class="section--header">
+                            <h2 class="section--title">学生介绍</h2>                         
+                        </div>
+                        <!--about-container start-->
+                        <div class="about-container">
+                            <div class="our-team">
+                                <h2 id="graduate-d">已毕业博士</h2>
+                                <div class="am-g graduate-d">
+                                    <div class="am-u-md-3">
+                                        <div class="team-box">
+                                            <div class="our-team-img">
+                                                <img src='@Url.Content("~/Content/Images/about/001.jpg")' alt="" />
+                                            </div>
+                                            <div class="team_member--body">
+                                                <h3 class="team_member--name">John Holland</h3>
+                                                <span class="team_member--position">Chief Executive Officer</span>
+                                                <span class="team_member--email">
+                                                    <a href="">john@financed.com</a>
+                                                </span>                                              
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="am-u-md-3">
+                                        <div class="team-box">
+                                            <div class="our-team-img">
+                                                <img src='@Url.Content("~/Content/Images/about/002.jpg")' alt="" />
+                                            </div>
+                                            <div class="team_member--body">
+                                                <h3 class="team_member--name">John Holland</h3>
+                                                <span class="team_member--position">Chief Executive Officer</span>
+                                                <span class="team_member--email">
+                                                    <a href="">john@financed.com</a>
+                                                </span>
+                                                <ul class="team_member--links">
+                                                    <li><a href="#"><span class="am-icon-facebook"></span></a></li>
+                                                    <li><a href="#"><span class="am-icon-twitter"></span></a></li>
+                                                    <li><a href="#"><span class="am-icon-google-plus"></span></a></li>
+                                                    <li><a href="#"><span class="am-icon-linkedin"></span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="am-u-md-3">
+                                        <div class="team-box">
+                                            <div class="our-team-img">
+                                                <img src='@Url.Content("~/Content/Images/about/003.jpg")' alt="" />
+                                            </div>
+                                            <div class="team_member--body">
+                                                <h3 class="team_member--name">John Holland</h3>
+                                                <span class="team_member--position">Chief Executive Officer</span>
+                                                <span class="team_member--email">
+                                                    <a href="">john@financed.com</a>
+                                                </span>
+                                                <ul class="team_member--links">
+                                                    <li><a href="#"><span class="am-icon-facebook"></span></a></li>
+                                                    <li><a href="#"><span class="am-icon-twitter"></span></a></li>
+                                                    <li><a href="#"><span class="am-icon-google-plus"></span></a></li>
+                                                    <li><a href="#"><span class="am-icon-linkedin"></span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="am-u-md-3">
+                                        <div class="team-box">
+                                            <div class="our-team-img">
+                                                <img src="~/Content/Images/about/004.jpg" alt="" />
+                                            </div>
+                                            <div class="team_member--body">
+                                                <h3 class="team_member--name">John Holland</h3>
+                                                <span class="team_member--position">Chief Executive Officer</span>
+                                                <span class="team_member--email">
+                                                    <a href="">john@financed.com</a>
+                                                </span>
+                                                <ul class="team_member--links">
+                                                    <li><a href="#"><span class="am-icon-facebook"></span></a></li>
+                                                    <li><a href="#"><span class="am-icon-twitter"></span></a></li>
+                                                    <li><a href="#"><span class="am-icon-google-plus"></span></a></li>
+                                                    <li><a href="#"><span class="am-icon-linkedin"></span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h2 id="graduate-m">已毕业硕士</h2>
+                                <div class="am-g graduate-m">
+                                </div>
+                                <h2 id="doctor">在读博士生</h2>
+                                <div class="am-g doctor">
+                                </div>
+                                <h2 id="master">在读硕士</h2>
+                                <div class="am-g master">
+
+                                </div>
+                            </div>
+                            <!--about-container end-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--===========layout-footer================-->
+        <div class="layout-footer">
+            <div class="footer">
+                <div style="background-color:#383d61" class="footer--bg"></div>
+                <div class="footer--inner">
+                    <div class="container">
+                        <div class="footer_main">
+                            <div class="am-g">
+
+                                <div class="footer_main--column">
+                                    <strong class="footer_main--column_title">智慧互联与网络控制研究所</strong>
+                                    <div class="footer_about">
+                                        <p class="footer_about--text">
+                                            <a href="http://lib.njust.edu.cn/">南理工图书馆</a> <a href="http://www.njust.edu.cn/">南理工官网</a><a href="http://au.njust.edu.cn/">南理工自动化</a>
+                                            <a href="http://gs.njust.edu.cn/">南理工研究生院</a> <a href="">财务网站</a>
+                                        </p>
+                                        <p class="footer_about--text">
+                                            Copyright(c)2017   智慧互联与网络控制研究所   All rights reserved   技术支持：8016团队
+                                        </p>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--右下角图标-->
+    <a href="#doc-oc-demo1" class="am-icon-btn am-icon-bars am-show-sm-only amz-sidebar-toggle" data-am-offcanvas="{effect: 'push'}"><span class="am-sr-only">侧栏导航</span></a>
+    <div class="amz-toolbar" id="amz-toolbar" style="right:10px">
+        <a title="回到顶端" class="am-icon-btn am-icon-arrow-up" id="amz-go-top" href="#top" data-am-smooth-scroll></a>
+    </div>
+    <script src='@Url.Content("~/Scripts/amazeui.js")' charset="utf-8"></script>
+</body>
+
+</html>
+

@@ -1,0 +1,493 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>南理工自动化研究所</title>
+    <link rel="stylesheet" href='@Url.Content("~/Content/CSS/amazeui.css")' />
+    <link rel="stylesheet" href='@Url.Content("~/Content/CSS/common.min.css")' />
+    <link rel="stylesheet" href='@Url.Content("~/Content/CSS/news.min.css")' />
+    <script src='@Url.Content("~/Scripts/jquery-2.1.0.js")' charset="utf-8"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //  alert("文档准备好了！");         
+            showyearbtn("china");
+            showyearbtn("english");
+            showyearbtn("patent");        
+        })
+    </script> 
+    <script type="text/javascript">
+        var fileprepath = '@Url.Content("http://egov.jinyuc.com/teamweb/common/paperadd/")';//论文pdf格式存储路径
+
+        //显示年份按钮  按钮的value用于显示，name用于传值,id格式为papertype+paperyear
+        function showyearbtn(papertype) {
+            var url = '@Url.Action("Listyear","solution")';
+            $.get(url,{papertype:papertype}, function (response) {
+                    // alert(response);
+                var dataset = eval("(" + response + ")");
+                //     alert("length是：<br/>" + dataset.length);
+                if (dataset.length <= 10) {
+                    for (var i = 0; i <= dataset.length - 1; i++) {
+
+                        $(".year1." + papertype).append("<li><input type='button' onclick='mobilebtn(\""+dataset[i].year+"\",\"" + papertype + "\")' value='" + dataset[i].year + "年' ></li>")
+                        $(".year2."+papertype).append("<li><input id=\'"+papertype+dataset[i].year+"\' class='am-btn year-btn "+papertype+"' type='button' onclick='btn1(this.name,\""+papertype+"\")' value='" + dataset[i].year + "年' name='" + dataset[i].year + "'></li>")
+
+                    }
+                }
+                else {
+                    var value = "";
+                    for (var i = 0; i <= 9; i++) {
+
+                        $(".year1." + papertype).append("<li><input type='button' onclick='mobilebtn(\""+dataset[i].year+"\",\"" + papertype + "\")' value='" + dataset[i].year + "年'></li>")
+                        $(".year2." + papertype).append("<li><input id=\'" + papertype + dataset[i].year + "\' class='am-btn year-btn " + papertype + "' type='button' onclick='btn1(this.name,\"" + papertype + "\")' value='" + dataset[i].year + "年'name='" + dataset[i].year + "'></li>")
+
+                    }
+                    for (var i = 10; i <= dataset.length - 1; i++) {
+
+                        if (i == dataset.length - 1) {
+                            value += dataset[i].year;
+                        }
+                        else {
+                            value += dataset[i].year + ",";
+                        }
+
+                    }
+                    //"*年及之前"按钮的value值，按"年份,年份,年份"形式
+                    $(".year1." + papertype).append("<li><input type='button' value='" + dataset[10].year + "年及之前' onclick='mobilebtn(\""+dataset[10].year+"\",\"" + papertype + "\")'></li>")
+                    $(".year2." + papertype).append("<li><input id=\'" + papertype + dataset[10].year + "\' class='am-btn year-btn " + papertype + "' type='button' name='" + value + "'value='" + dataset[10].year + "年及之前' onclick='btn2(this.name,\"" + papertype + "\")'></li>")
+                }
+                var firstchild = $(".year2."+papertype+">>:first");
+                firstchild.click();
+            })
+
+        }
+        //单年份论文内容查询
+        function btn1(year,papertype) {
+            //   alert("btn1按钮可以用了");                      
+            // alert(year);
+            var url = '@Url.Action("listcontent","solution")' + "?type=simple";
+            $.get(url, { year: year,papertype:papertype }, function (response) {
+                   //  alert(response);
+                if (response == "0") {
+                    alert("本年度没有论文发表！");
+                }
+                else {
+                    var dataset = eval("(" + response + ")");
+                    //alert(dataset[0].paperaddress);
+                    var content = "";
+                    for (var i = 0, j = 0; i <= dataset.length - 1; i++) {
+                        j = i + 1;
+                        var filepath = fileprepath + dataset[i].paperaddress;
+                        content += "<li>(" + j + ")." + dataset[i].paperdescribe + "<a target='_blank' href='"+filepath+"'>[pdf]</a></li>";
+                    }
+                    var sqlpapertype = "";//china和数据库的papertype字段转换
+                    if (papertype == "china") { sqlpapertype = "中文文献"; }
+                    else if (papertype == "english") { sqlpapertype = "英文文献"; }
+                    else if (papertype == "patent") { sqlpapertype = "专利"; }
+                    else { sqlpapertype = ""; };
+                    $(".content-head."+papertype).html(year + "年度"+sqlpapertype);
+                    $(".content."+papertype).html(content);
+                }
+
+            });
+        };
+        //多年份论文内容查询
+        function btn2(year,papertype) {
+            //  alert("btn2按钮可以用了");    
+            var url = '@Url.Action("listcontent","solution")' + "?type=multi";
+            $.get(url, { year: year,papertype:papertype}, function (response) {
+                //      alert("response是：<br/>" + response);
+                if (response == "0") {
+                    alert("本年度没有论文发表！");
+                }
+                else {
+                    var content = "";
+                    var dataset = eval("(" + response + ")");
+                    for (var i = 0,j=0; i <= dataset.length - 1; i++) {
+                        j = i + 1;
+                        var filepath = fileprepath + dataset[i].paperaddress;
+                        content += "<li>(" + j + ")." + dataset[i].paperdescribe + "<a target='_blank' href='" + filepath + "'>[pdf]</a></li>";
+                    }
+                    var sqlpapertype = "";//china和数据库的papertype字段转换
+                    if (papertype == "china") { sqlpapertype = "中文文献"; }
+                    else if (papertype == "english") { sqlpapertype = "英文文献"; }
+                    else if (papertype == "patent") { sqlpapertype = "专利"; }
+                    else { sqlpapertype = ""; };
+                    $(".content-head."+papertype).html(year + "年度"+sqlpapertype);
+                    $(".content."+papertype).html(content);
+                }
+            }
+        )
+        };
+        //移动端按钮功能：1,按下导航分类键  2，按下相应年份按钮
+        function mobilebtn(year, papertype) {
+            $(".head." + papertype).click();
+            var id = papertype + year;
+         //   alert("id是："+id);
+            $("input#" + id).click();
+        }
+    </script>
+    <style>
+        input[type=button]{
+            height:40px;
+        }
+        .am-nav-header {
+            color: #000000;
+        }
+        .am-nav-header span{
+            color:#eeeeee;
+        }
+
+      .solutions-tabs-ul {
+	width: 60% !important;
+	margin: 0 auto !important;
+	background-color: #ffffff !important;
+	padding-top: 30px !important;
+}
+
+.solutions-tabs-ul li {
+	height: 80px !important;
+	margin-top: 20px;
+	border-right: 20px solid #ffffff;
+	position: relative;
+}
+
+.solutions-tabs-ul li a div {
+	width: 90%;
+	margin: 0 auto;
+}
+
+.solutions-tabs-li-ac a,
+.solutions-tabs-ul li a {
+	color: #ffffff !important;
+}
+.solutions-tabs-ul li:hover {
+	background-color: #005489;
+	-webkit-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	-ms-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	transition: all 0.4s;
+}
+
+.solutions-tabs-ul li a i {
+	display: block;
+	font-size: 30px;
+	margin-top: 5px;
+}
+
+.solutions-tabs-ul li a span {
+	display: block;
+	width: 100%;
+	text-align: center;
+	position: absolute;
+	bottom: -5px
+}
+.solutions-tabs-ul-li1 {
+	background-color: #0171b7;
+}
+
+.solutions-tabs-ul-li2 {
+	background-color: #0086da;
+}
+
+.solutions-tabs-ul-li3 {
+	background-color: #429ed7;
+}
+
+.solutions-tabs-ul-li4 {
+	background-color: #6eb6e2;
+}
+
+.solutions-tabs-content {
+	background-color: #f0eeed;
+	padding: 20px 20px 0 20px;
+	width: 100%;
+	margin-top: 30px;
+}
+
+.solutions-tabs-content {
+
+  padding: 20px 5px 0 5px;
+
+}
+    .solutions-tabs-ul li a i {
+		display: block;
+		margin-top: 10px;
+	}
+    	.solutions-tabs-ul {
+  padding-top: 10px !important;
+}
+        .solutions-tabs-ul li a i {
+		display: block;
+		margin-top: 10px;
+	}
+        .am-tabs-d2 .am-tabs-nav > .am-active{
+            background-color:#005489;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <!--===========layout-header================-->
+        <div class="layout-header am-hide-sm-only">
+            <!--pc端导航栏-->
+            <div class="header-box" data-am-sticky>
+                <div class="nav-contain">
+                    <div class="nav-inner">
+                        <ul class="am-nav am-nav-pills am-nav-justify">
+                            <li class=""><a href='@Url.Action("index","Index")'>首页</a></li>
+                            <li><a href='@Url.Action("news","News")'>新闻中心</a></li>
+                            <li style="text-align:center">
+                                科研成果
+                                <ul class="sub-menu">
+                                    <li class="menu-item"><a href='@Url.Action("theory","Solution")'>理论研究</a></li>
+                                    <li class="menu-item"><a href='@Url.Action("solution","Solution")'>项目研究</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href='@Url.Action("reaserch","Reaserch")'>研究领域</a>
+                            </li>
+                            <li><a href='@Url.Action("about","We")'>团队介绍</a></li>
+                            <li><a href='@Url.Action("join","We")'>加入我们</a></li>
+                            <li><a href='@Url.Action("contact","We")'>联系我们</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--移动端导航栏-->
+        <div class="m-header">
+            <div class="am-g am-show-sm-only">
+                <div class="am-u-sm-2">
+                    <a href="#mheader" class="am-menu-toggle-icon am-icon-bars"></a>
+                    <div class="menu-bars">
+                        <nav data-am-widget="menu" class="am-menu  am-menu-dropdown1"
+                             data-am-menu-collapse>
+                            <a href="javascript: void(0)" class="am-menu-toggle"></a>
+                            <ul class="am-menu-nav am-avg-sm-1 am-collapse" id="mheader">
+                                <li class="am-active"><a href='@Url.Action("index","Index")' class="">首页</a></li>
+                                <li class="">
+                                    <a href='@Url.Action("news","News")' class="">新闻中心</a>
+                                </li>
+                                <li class="am-parent">
+                                    <a href="##" class="">科研成果</a>
+                                    <ul class="am-menu-sub am-collapse  am-avg-sm-3 ">
+                                        <li class="">
+                                            <a href='@Url.Action("theory", "Solution")' class="">理论研究</a>
+                                        </li>
+                                        <li class="">
+                                            <a href='@Url.Action("solution","Solution")' class="">项目研究</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="">
+                                    <a href='@Url.Action("reaserch","Reaserch")' class="">研究领域</a>
+                                </li>
+                                <li class="">
+                                    <a href='@Url.Action("about", "We")' class="">团队介绍</a>
+                                </li>
+                                <li class="">
+                                    <a href='@Url.Action("join", "We")' class="">加入我们</a>
+                                </li>
+                                <li class="">
+                                    <a href='@Url.Action("contact", "We")' class="">联系我们</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="am-u-sm-5 am-u-end">
+                    <div class="m-logo">
+                        <a href=""><img src='@Url.Content("~/Content/Images/logo.png")' alt="" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--侧栏主要内容-->
+        <div class="am-g am-show-sm-only">
+            <div class="am-u-sm-2">
+                <div class="menu-bars">
+                    <nav data-am-widget="menu" class="am-menu  am-menu-offcanvas1" data-am-menu-offcanvas>
+                        <!--      <a href="javascript: void(0)" class="am-menu-toggle"></a> -->
+                        <div class="am-offcanvas" id="doc-oc-demo1">
+                            <div class="am-offcanvas-bar">
+                                <nav class="scrollspy-nav" data-am-scrollspynav data-am-sticky>
+                                    <div class="am-menu-nav am-avg-sm-1" >
+                                        <ul class="am-nav-header year1 china">
+                                            <li><span>中文文献</span></li>
+                                        </ul>
+                                        <ul class="am-nav-header year1 english">
+                                            <li><span>英文文献</span></li>
+
+                                        </ul>
+                                        <ul class="am-nav-header year1 patent">
+                                            <li><span>专利</span></li>
+
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+        </div>
+        <!--===========layout-container================-->
+        <!--大背景图片-->
+        <div class="layout-container">
+            <div class="page-header">
+                <div class="am-container">
+                    <h1 class="page-header-title">理论研究</h1>
+                </div>
+            </div>         
+        </div>
+
+
+        <div data-am-widget="tabs" class="am-tabs am-tabs-default ">
+
+            <ul class="am-tabs-nav am-cf solutions-tabs-ul ">
+                <li class="am-active solutions-tabs-ul-li1"><a class="china head" href="[data-tab-panel-0]"><i class=" am-icon-desktop"></i><span>中文文献</span></a></li>
+                <li class="solutions-tabs-ul-li2"><a class="english head" href="[data-tab-panel-1]"><i class=" am-icon-mobile-phone mobile-phone"></i><span>英文文献</span></a></li>
+                <li class="solutions-tabs-ul-li3"><a class="patent head" href="[data-tab-panel-2]"><i class=" am-icon-desktop"></i><span>专利</span></a></li>
+            </ul>
+
+            <div class="am-tabs-bd solutions-tabs-content ">
+                <div data-tab-panel-0 class="am-tab-panel am-active">
+                    <div class="breadcrumb-box">
+                        <div class="am-container">
+                            <ol class="am-breadcrumb">
+                                <li><a href='@Url.Action("index","Index")'>首页</a></li>
+                                <li><a href='@Url.Action("theory", "Solution")'>理论研究</a></li>
+                                <li class="am-active">中文文献</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!--主要内容-->
+                    <div class="solutions-content-ul">
+                        <div class="am-g">
+                            <div class="bar am-u-sm-2 am-hide-sm-only">
+                                <ul class="china year2">     
+                                </ul>
+                            </div>
+
+                            <div class="am-u-sm-10 main-cont">
+                                <h1 class="content-head china"></h1>
+                                <ul class="content china">
+                                
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div data-tab-panel-1 class="am-tab-panel ">
+                    <div class="breadcrumb-box">
+                        <div class="am-container">
+                            <ol class="am-breadcrumb">
+                                <li><a href='@Url.Action("index","Index")'>首页</a></li>
+                                <li><a href='@Url.Action("theory", "Solution")'>理论研究</a></li>
+                                <li class="am-active">英文文献</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!--主要内容-->
+                    <div class=" solutions-content-ul">
+                        <div class="am-g">
+                            <div class="bar am-u-sm-2 am-hide-sm-only">
+                                <ul class="year2 english">
+                          
+                                </ul>
+                            </div>
+
+                            <div class="am-u-sm-10 main-cont">
+                                <h1 class="content-head english"></h1>
+                                <ul class="content english"></ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-tab-panel-2 class="am-tab-panel ">
+                    <div class="breadcrumb-box">
+                        <div class="am-container">
+                            <ol class="am-breadcrumb">
+                                <li><a href='@Url.Action("index","Index")'>首页</a></li>
+                                <li><a href='@Url.Action("theory", "Solution")'>理论研究</a></li>
+                                <li class="am-active">专利</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!--主要内容-->
+                    <div class=" solutions-content-ul">
+                        <div class="am-g">
+                            <div class="bar am-u-sm-2 am-hide-sm-only">
+                                <ul class="year2 patent">
+                                   
+                                </ul>
+                            </div>
+
+                            <div class="am-u-sm-10 main-cont">
+                                <h1 class="content-head patent"></h1>
+                                <ul class="content patent"></ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>             
+    </div>
+
+    <!--===========layout-footer================-->
+    <div class="layout-footer">
+        <div class="footer">
+            <div style="background-color:#383d61" class="footer--bg"></div>
+            <div class="footer--inner">
+                <div class="container">
+                    <div class="footer_main">
+                        <div class="am-g">
+
+                            <div class="footer_main--column">
+                                <strong class="footer_main--column_title">智慧互联与网络控制研究所</strong>
+                                <div class="footer_about">
+                                    <p class="footer_about--text">
+                                        <a href="http://lib.njust.edu.cn/">南理工图书馆</a> <a href="http://www.njust.edu.cn/">南理工官网</a><a href="http://au.njust.edu.cn/">南理工自动化</a>
+                                        <a href="http://gs.njust.edu.cn/">南理工研究生院</a> <a href="">财务网站</a>
+                                    </p>
+                                    <p class="footer_about--text">
+                                        Copyright(c)2017   智慧互联与网络控制研究所   All rights reserved   技术支持：8016团队
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--右下角图标-->
+    <a href="#doc-oc-demo1" class="am-icon-btn am-icon-bars am-show-sm-only amz-sidebar-toggle" data-am-offcanvas="{effect: 'push'}"><span class="am-sr-only">侧栏导航</span></a>
+    <div class="amz-toolbar" id="amz-toolbar" style="right:10px">
+        <a title="回到顶端" class="am-icon-btn am-icon-arrow-up" id="amz-go-top" href="#top" data-am-smooth-scroll></a>
+    </div>
+    <script src='@Url.Content("~/Scripts/jquery-2.1.0.js")' charset="utf-8"></script>
+    <script src='@Url.Content("~/Scripts/amazeui.js")' charset="utf-8"></script>
+</body>
+
+</html>
+
